@@ -6,7 +6,37 @@ using System.Threading.Tasks;
 
 namespace MonkeyShop.Classes
 {
-    internal class NavClass
+    public class NavClass
     {
+        public static bool isAuth = false;
+        public static bool isRed = false;
+        public static MainWindow main;
+        public static List<NavComponentsClass> navs = new List<NavComponentsClass>();
+
+        private static void Update(NavComponentsClass nav)
+        {
+            main.MainFrame.Navigate(nav.Page);
+        }
+
+        /// <summary>
+        /// Переход на следующую страницу
+        /// </summary>
+        public static void NextPage(NavComponentsClass nav)
+        {
+            navs.Add(nav);
+            Update(nav);
+        }
+
+        /// <summary>
+        /// Переход на предыдущую страницу
+        /// </summary>
+        public static void BackPage()
+        {
+            if (navs.Count > 1)
+            {
+                navs.Remove(navs[navs.Count - 1]);
+                Update(navs[navs.Count - 1]);
+            }
+        }
     }
 }

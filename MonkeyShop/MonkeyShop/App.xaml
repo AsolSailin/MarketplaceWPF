@@ -4,6 +4,43 @@
              xmlns:local="clr-namespace:MonkeyShop"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#f3e9f7"/>
+            <Setter Property="Foreground" Value="#FF5C176B"/>
+            <Setter Property="Margin" Value="0,7,0,0"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Snap ITC"/>
+            <Setter Property="Background" Value="#e6ccff"/>
+            <Setter Property="Foreground" Value="#FF5C176B"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Rockwell Extra Bold"/>
+            <Setter Property="Background" Value="#f3e9f7"/>
+            <Setter Property="Foreground" Value="#FF5C176B"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Rockwell Extra Bold"/>
+            <Setter Property="Background" Value="#f3e9f7"/>
+            <Setter Property="Foreground" Value="#FF5C176B"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="#f3e9f7"/>
+            <Setter Property="Foreground" Value="#FF5C176B"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="FontFamily" Value="Rockwell Extra Bold"/>
+            <Setter Property="Background" Value="#f3e9f7"/>
+            <Setter Property="Foreground" Value="#FF5C176B"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#e6ccff"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Background" Value="#e6ccff"/>
+        </Style>
+        <Style TargetType="Rectangle">
+            <Setter Property="Fill" Value="#FF5C176B"/>
+        </Style>
     </Application.Resources>
 </Application>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyShop.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,32 @@ namespace MonkeyShop.Pages.GeneralPages
         public AuthorizationPage()
         {
             InitializeComponent();
+        }
+
+        private void AuthoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbLogin.Text != "" && tbPassword.Password != "")
+            {
+                var data = App.Connection.Account.Where(x => x.Password == tbPassword.Password
+                && x.Login == tbLogin.Text).FirstOrDefault();
+                if (data != null)
+                {
+                    NavClass.NextPage(new NavComponentsClass(new RegistrationPage()));
+                }
+                else
+                {
+                    MessageBox.Show("User not found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Fill login and password please!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void RegBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavClass.NextPage(new NavComponentsClass(new RegistrationPage()));
         }
     }
 }

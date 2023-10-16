@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MonkeyShop.Classes;
+using MonkeyShop.Pages.GeneralPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,8 @@ namespace MonkeyShop
         public MainWindow()
         {
             InitializeComponent();
+            NavClass.main = this;
+            NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
         }
     }
 }
