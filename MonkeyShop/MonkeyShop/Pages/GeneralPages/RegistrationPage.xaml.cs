@@ -61,6 +61,5 @@ namespace MonkeyShop.Pages.GeneralPages
         {
             NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
         }
-
     }
 }

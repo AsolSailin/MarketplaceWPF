@@ -11,7 +11,6 @@
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Arial Black"/>
-            <Setter Property="Background" Value="#e6ccff"/>
             <Setter Property="Foreground" Value="#FF5C176B"/>
         </Style>
         <Style TargetType="TextBox">

@@ -41,13 +41,5 @@
                 </Button>
             </StackPanel>
         </StackPanel>
-        <Button Grid.Row="2" Height="30" Width="100" Content="НАЗАД" HorizontalAlignment="Left" Margin="20 0 0 0" Click="BackBtn_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-
     </Grid>
 </Page>

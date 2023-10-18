@@ -25,8 +25,27 @@ namespace MonkeyShop
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigated += MainFrame_Navigated;
             NavClass.main = this;
             NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var page = e.Content as Page;
+            if (page is AuthorizationPage)
+            {
+                btnBack.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnBack.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavClass.BackPage();
         }
     }
 }
