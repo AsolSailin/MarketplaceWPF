@@ -17,26 +17,23 @@
         <Image Source="\Images\Logo.png" Width="350" Grid.RowSpan="3"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="300">
-            <TextBlock Text="Login"></TextBlock>
+            <TextBlock Text="ЛОГИН"></TextBlock>
             <TextBox x:Name="tbLogin" Height="30"></TextBox>
-            <TextBlock Text="Password"></TextBlock>
+            <TextBlock Text="ПАРОЛЬ"></TextBlock>
             <PasswordBox x:Name="tbPassword" Height="30"></PasswordBox>
             <StackPanel Margin="0 15 0 0">
-                <Button Height="30" Content="Log In" Click="AuthoBtn_Click">
+                <Button Height="30" Content="ВОЙТИ" Click="AuthoBtn_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="15"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Height="30" Content="Registration" Click="RegBtn_Click" Margin="0 5 0 0">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                <TextBlock x:Name="hlLink" HorizontalAlignment="Center" FontSize="13">
+                    <Hyperlink Click="Hyperlink_Click">Нет аккаунта?</Hyperlink>
+                </TextBlock>
             </StackPanel>
         </StackPanel>
+
     </Grid>
 </Page>

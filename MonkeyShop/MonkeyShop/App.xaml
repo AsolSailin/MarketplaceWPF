@@ -10,7 +10,7 @@
             <Setter Property="Margin" Value="0,7,0,0"/>
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Snap ITC"/>
+            <Setter Property="FontFamily" Value="Arial Black"/>
             <Setter Property="Background" Value="#e6ccff"/>
             <Setter Property="Foreground" Value="#FF5C176B"/>
         </Style>
@@ -41,6 +41,9 @@
         </Style>
         <Style TargetType="Rectangle">
             <Setter Property="Fill" Value="#FF5C176B"/>
+        </Style>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="#FF5C176B"/>
         </Style>
     </Application.Resources>
 </Application>

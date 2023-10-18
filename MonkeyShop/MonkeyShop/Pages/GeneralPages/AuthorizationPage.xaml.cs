@@ -38,16 +38,16 @@ namespace MonkeyShop.Pages.GeneralPages
                 }
                 else
                 {
-                    MessageBox.Show("User not found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Пользователь не найден!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Fill login and password please!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите логин и пароль, пожалуйста!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void RegBtn_Click(object sender, RoutedEventArgs e)
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             NavClass.NextPage(new NavComponentsClass(new RegistrationPage()));
         }
