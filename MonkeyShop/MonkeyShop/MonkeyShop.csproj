@@ -78,12 +78,6 @@
     <Compile Include="ADO\Basket.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ADO\Category.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Characteristic.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="ADO\IssuePoint.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -115,9 +109,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ADO\User.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Value.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -228,18 +219,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="ADO\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ADO\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\Logo.png" />
   </ItemGroup>
   <ItemGroup>

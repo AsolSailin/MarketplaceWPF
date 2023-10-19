@@ -18,17 +18,15 @@ namespace MonkeyShop.ADO
         public Product()
         {
             this.Basket = new HashSet<Basket>();
-            this.Value = new HashSet<Value>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
         public Nullable<int> Cost { get; set; }
         public string Description { get; set; }
+        public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basket> Basket { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Value> Value { get; set; }
     }
 }

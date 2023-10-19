@@ -27,14 +27,11 @@ namespace MonkeyShop.ADO
     
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Basket> Basket { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Characteristic> Characteristic { get; set; }
         public virtual DbSet<IssuePoint> IssuePoint { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Value> Value { get; set; }
     }
 }
