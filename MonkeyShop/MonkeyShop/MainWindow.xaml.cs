@@ -1,4 +1,5 @@
 ﻿using MonkeyShop.Classes;
+using MonkeyShop.Pages;
 using MonkeyShop.Pages.GeneralPages;
 using System;
 using System.Collections.Generic;
