@@ -15,8 +15,9 @@ namespace MonkeyShop.ADO
     public partial class Basket
     {
         public int Id { get; set; }
-        public Nullable<int> Order_Id { get; set; }
+        public Nullable<int> Count { get; set; }
         public Nullable<int> Product_Id { get; set; }
+        public Nullable<int> Order_Id { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

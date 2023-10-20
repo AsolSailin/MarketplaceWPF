@@ -7,7 +7,6 @@
         <Style TargetType="Button">
             <Setter Property="Background" Value="#f3e9f7"/>
             <Setter Property="Foreground" Value="#FF5C176B"/>
-            <Setter Property="Margin" Value="0,7,0,0"/>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Arial Black"/>

@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2f6563c4a65d4bd18ea05716bda2a1c8" Name="Diagram1">
+      <Diagram DiagramId="e8f21647750543abb113fc6311b093e6" Name="Diagram1">
         <EntityTypeShape EntityType="MonkeyShopModel.Account" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="MonkeyShopModel.Basket" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonkeyShopModel.Basket" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MonkeyShopModel.IssuePoint" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MonkeyShopModel.Order" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MonkeyShopModel.OrderStatus" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="MonkeyShopModel.Role" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MonkeyShopModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="MonkeyShopModel.FK_Account_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MonkeyShopModel.FK_Basket_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="MonkeyShopModel.FK_Basket_Order1" ManuallyRouted="false" />
         <AssociationConnector Association="MonkeyShopModel.FK_Basket_Product" ManuallyRouted="false" />
         <AssociationConnector Association="MonkeyShopModel.FK_Order_IssuePoint" ManuallyRouted="false" />
         <AssociationConnector Association="MonkeyShopModel.FK_Order_OrderStatus" ManuallyRouted="false" />

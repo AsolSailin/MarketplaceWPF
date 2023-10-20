@@ -9,6 +9,71 @@
       Title="CatalogPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Поиск" VerticalAlignment="Center"/>
+                <TextBox x:Name="tbSearch" Width="130" VerticalContentAlignment="Center" Height="30"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <TextBlock Text="Сортировка" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cbSort" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Фильтрация" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cbFilter" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <ScrollViewer  Grid.Column="1" Grid.Row="1" >
+            <StackPanel>
+                <ListView x:Name="lvServiceList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="3">
+                                    <Image Source="{Binding Image}" Width="100" Height="100"></Image>
+                                </StackPanel>
+                                <StackPanel Margin="15" Orientation="Vertical" Width="230">
+                                    <TextBlock Text="{Binding Title}"></TextBlock>
+                                    <TextBlock Text="{Binding Cost}"></TextBlock>
+                                    <TextBlock Text="{Binding Description}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="0 0 5 0" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 7 ">
+                                        <Button Content="-" Height="23" Width="23"></Button>
+                                        <TextBlock Width="23" VerticalAlignment="Center" TextAlignment="Center">0</TextBlock>
+                                        <Button Content="+" Height="23" Width="23"></Button>
+                                    </StackPanel>
+                                    <Button Content="Добавить в карзину" Height="23"></Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

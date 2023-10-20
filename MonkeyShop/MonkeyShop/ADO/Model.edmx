@@ -19,8 +19,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Order_Id" Type="int" />
+          <Property Name="Count" Type="int" />
           <Property Name="Product_Id" Type="int" />
+          <Property Name="Order_Id" Type="int" />
         </EntityType>
         <EntityType Name="IssuePoint">
           <Key>
@@ -89,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Basket_Order">
+        <Association Name="FK_Basket_Order1">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,7 +175,7 @@
             <End Role="User" EntitySet="User" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
-          <AssociationSet Name="FK_Basket_Order" Association="Self.FK_Basket_Order">
+          <AssociationSet Name="FK_Basket_Order1" Association="Self.FK_Basket_Order1">
             <End Role="Order" EntitySet="Order" />
             <End Role="Basket" EntitySet="Basket" />
           </AssociationSet>
@@ -219,9 +220,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Order_Id" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
           <Property Name="Product_Id" Type="Int32" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Basket_Order" FromRole="Basket" ToRole="Order" />
+          <Property Name="Order_Id" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Basket_Order1" FromRole="Basket" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Basket_Product" FromRole="Basket" ToRole="Product" />
         </EntityType>
         <EntityType Name="IssuePoint">
@@ -245,7 +247,7 @@
           <Property Name="Status_Id" Type="Int32" />
           <Property Name="Point_Id" Type="Int32" />
           <Property Name="User_Id" Type="Int32" />
-          <NavigationProperty Name="Basket" Relationship="Self.FK_Basket_Order" FromRole="Order" ToRole="Basket" />
+          <NavigationProperty Name="Basket" Relationship="Self.FK_Basket_Order1" FromRole="Order" ToRole="Basket" />
           <NavigationProperty Name="IssuePoint" Relationship="Self.FK_Order_IssuePoint" FromRole="Order" ToRole="IssuePoint" />
           <NavigationProperty Name="OrderStatus" Relationship="Self.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
@@ -302,7 +304,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Basket_Order">
+        <Association Name="FK_Basket_Order1">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -387,7 +389,7 @@
             <End Role="User" EntitySet="User" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
-          <AssociationSet Name="FK_Basket_Order" Association="Self.FK_Basket_Order">
+          <AssociationSet Name="FK_Basket_Order1" Association="Self.FK_Basket_Order1">
             <End Role="Order" EntitySet="Order" />
             <End Role="Basket" EntitySet="Basket" />
           </AssociationSet>
@@ -432,8 +434,9 @@
             <EntityTypeMapping TypeName="MonkeyShopModel.Basket">
               <MappingFragment StoreEntitySet="Basket">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
