@@ -1,6 +1,7 @@
 ﻿using MonkeyShop.Classes;
 using MonkeyShop.Pages;
 using MonkeyShop.Pages.GeneralPages;
+using MonkeyShop.Pages.UserPages.ClientPages;
 using MonkeyShop.Pages.UserPages.ManagerPages;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace MonkeyShop
             InitializeComponent();
             MainFrame.Navigated += MainFrame_Navigated;
             NavClass.main = this;
-            NavClass.NextPage(new NavComponentsClass(new NewProductPage()));
+            NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)

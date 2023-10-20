@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyShop.ADO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         public CatalogPage()
         {
             InitializeComponent();
+            lvProductList.ItemsSource = App.Connection.Product.ToList();
+        }
+
+        private void Minus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Plus_Click(object sender, RoutedEventArgs e)
+        {
+            //var item = (Product)((Button)sender).Tag;
         }
     }
 }

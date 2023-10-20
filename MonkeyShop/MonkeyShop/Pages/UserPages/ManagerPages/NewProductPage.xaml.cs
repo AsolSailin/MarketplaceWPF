@@ -44,12 +44,13 @@ namespace MonkeyShop.Pages.UserPages.ManagerPages
                         Title = tbTitle.Text,
                         Cost = int.Parse(tbCost.Text),
                         Description = tbDescription.Text,
+                        Image = Image
                     };
 
                     App.Connection.Product.Add(newProduct);
                     App.Connection.SaveChanges();
                     MessageBox.Show("Товар успешно дабавлен!");
-                    NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
+                    NavClass.NextPage(new NavComponentsClass(new NewProductPage()));
                 }
                 else
                 {
