@@ -30,7 +30,7 @@ namespace MonkeyShop
             InitializeComponent();
             MainFrame.Navigated += MainFrame_Navigated;
             NavClass.main = this;
-            NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
+            NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)

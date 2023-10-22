@@ -7,30 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MonkeyShop.ADO
+namespace MonkeyShop.DataBase
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Product()
         {
-            this.Account = new HashSet<Account>();
-            this.Order = new HashSet<Order>();
+            this.Basket = new HashSet<Basket>();
+            this.ProductOrder = new HashSet<ProductOrder>();
         }
     
         public int Id { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
-        public string Patronymic { get; set; }
-        public Nullable<int> Role_Id { get; set; }
+        public string Title { get; set; }
+        public Nullable<int> Cost { get; set; }
+        public string Description { get; set; }
+        public byte[] Image { get; set; }
+        public Nullable<int> Category_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<Basket> Basket { get; set; }
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
-        public virtual Role Role { get; set; }
+        public virtual ICollection<ProductOrder> ProductOrder { get; set; }
     }
 }

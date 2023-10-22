@@ -7,24 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MonkeyShop.ADO
+namespace MonkeyShop.DataBase
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class IssuePoint
+    public partial class OrderStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public IssuePoint()
+        public OrderStatus()
         {
             this.Order = new HashSet<Order>();
         }
     
         public int Id { get; set; }
-        public string Redion { get; set; }
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string House { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

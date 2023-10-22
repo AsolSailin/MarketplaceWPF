@@ -7,18 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MonkeyShop.ADO
+namespace MonkeyShop.DataBase
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class Basket
     {
         public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public Nullable<int> Count { get; set; }
+        public Nullable<int> Product_Id { get; set; }
         public Nullable<int> User_Id { get; set; }
     
+        public virtual Product Product { get; set; }
         public virtual User User { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using MonkeyShop.Classes;
+using MonkeyShop.Pages.UserPages.ClientPages;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +36,8 @@ namespace MonkeyShop.Pages.GeneralPages
                 && x.Login == tbLogin.Text).FirstOrDefault();
                 if (data != null)
                 {
-                    NavClass.NextPage(new NavComponentsClass(new RegistrationPage()));
+                    App.CurrentUser = App.Connection.User.Where(x => x.Id == data.User_Id).FirstOrDefault();
+                    NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
                 }
                 else
                 {

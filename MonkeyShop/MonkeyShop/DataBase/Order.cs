@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MonkeyShop.ADO
+namespace MonkeyShop.DataBase
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace MonkeyShop.ADO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.Basket = new HashSet<Basket>();
+            this.ProductOrder = new HashSet<ProductOrder>();
         }
     
         public int Id { get; set; }
@@ -27,10 +27,10 @@ namespace MonkeyShop.ADO
         public Nullable<int> Point_Id { get; set; }
         public Nullable<int> User_Id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Basket> Basket { get; set; }
         public virtual IssuePoint IssuePoint { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOrder> ProductOrder { get; set; }
     }
 }

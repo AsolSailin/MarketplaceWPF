@@ -1,4 +1,6 @@
-﻿using MonkeyShop.ADO;
+﻿using MonkeyShop.Classes;
+using MonkeyShop.DataBase;
+using MonkeyShop.Pages.GeneralPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,14 +29,32 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             lvProductList.ItemsSource = App.Connection.Product.ToList();
         }
 
-        private void Minus_Click(object sender, RoutedEventArgs e)
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Button button = sender as Button;
+                Product product = button.DataContext as Product;
 
+                var newBasket = new Basket()
+                {
+                    Product_Id = product.Id,
+                    User_Id = App.CurrentUser.Id
+                };
+
+                App.Connection.Basket.Add(newBasket);
+                App.Connection.SaveChanges();
+                MessageBox.Show("Товар добавлен в карзину");
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка системы!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void Plus_Click(object sender, RoutedEventArgs e)
+        private void GetBasket_Click(object sender, RoutedEventArgs e)
         {
-            //var item = (Product)((Button)sender).Tag;
+            NavClass.NextPage(new NavComponentsClass(new BasketPage()));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using MonkeyShop.ADO;
+﻿using MonkeyShop.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,5 +15,7 @@ namespace MonkeyShop
     public partial class App : Application
     {
         public static MonkeyShopEntities Connection = new MonkeyShopEntities();
+        public static bool isAuth = false;
+        public static User CurrentUser;
     }
 }

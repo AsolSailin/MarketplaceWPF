@@ -15,8 +15,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="15*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="9*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -54,25 +54,38 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="110">
                                 <StackPanel Margin="3">
-                                    <Image Source="{Binding Image}" Width="100" Height="100"></Image>
+                                    <Image Source="{Binding Image}" Width="100" Height="100">
+                                        <Image.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="15"/>
+                                            </Style>
+                                        </Image.Resources>
+                                    </Image>
                                 </StackPanel>
                                 <StackPanel Margin="15" Orientation="Vertical" Width="230" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="0 0 0 5"></TextBlock>
                                     <TextBlock Text="{Binding Cost}">р</TextBlock>
                                 </StackPanel>
-                                <StackPanel Orientation="Vertical" Margin="0 0 5 0" VerticalAlignment="Center">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 7 ">
-                                        <Button Content="-" Height="23" Width="23" Click="Minus_Click"></Button>
-                                        <TextBlock x:Name="tbCount" Width="23" VerticalAlignment="Center" TextAlignment="Center">0</TextBlock>
-                                        <Button Content="+" Height="23" Width="23" Click="Plus_Click"></Button>
-                                    </StackPanel>
-                                    <Button Content="Добавить в карзину" Height="23"></Button>
-                                </StackPanel>
+                                <Button Content="Добавить в карзину" Height="23" Width="170" Margin="0 0 5 0" VerticalAlignment="Center" Click="AddProduct_Click">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="15"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
         </ScrollViewer>
+
+        <Button Grid.Column="2" Grid.Row="2" Height="23" VerticalAlignment="Center" Content="КАРЗИНА" Click="GetBasket_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Page>
