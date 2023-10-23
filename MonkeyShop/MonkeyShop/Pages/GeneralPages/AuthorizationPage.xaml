@@ -18,9 +18,9 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="300">
             <TextBlock Text="ЛОГИН"></TextBlock>
-            <TextBox x:Name="tbLogin" Height="30"></TextBox>
+            <TextBox x:Name="tbLogin" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></TextBox>
             <TextBlock Text="ПАРОЛЬ"></TextBlock>
-            <PasswordBox x:Name="tbPassword" Height="30"></PasswordBox>
+            <PasswordBox x:Name="tbPassword" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></PasswordBox>
             <StackPanel Margin="0 15 0 0">
                 <Button Height="30" Content="ВОЙТИ" Click="AuthoBtn_Click">
                     <Button.Resources>

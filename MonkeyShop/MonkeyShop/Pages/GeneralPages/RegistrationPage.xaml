@@ -17,15 +17,15 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock Text="ФАМИЛИЯ"></TextBlock>
-            <TextBox x:Name="tbSurname" Height="30"></TextBox>
+            <TextBox x:Name="tbSurname" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></TextBox>
             <TextBlock Text="ИМЯ"></TextBlock>
-            <TextBox x:Name="tbName" Height="30"></TextBox>
+            <TextBox x:Name="tbName" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></TextBox>
             <TextBlock Text="ОТЧЕСТВО"></TextBlock>
-            <TextBox x:Name="tbPatronymic" Height="30"></TextBox>
+            <TextBox x:Name="tbPatronymic" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></TextBox>
             <TextBlock Text="ЛОГИН"></TextBlock>
-            <TextBox x:Name="tbLogin" Height="30"></TextBox>
+            <TextBox x:Name="tbLogin" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></TextBox>
             <TextBlock Text="ПАРОЛЬ"></TextBlock>
-            <PasswordBox x:Name="pbPassword" Height="30"></PasswordBox>
+            <PasswordBox x:Name="pbPassword" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></PasswordBox>
             <StackPanel Margin="0 15 0 0">
                 <Button Height="30" Content="ЗАРЕГИСТРИРОВАТЬСЯ" Click="RegBtn_Click">
                     <Button.Resources>
