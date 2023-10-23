@@ -22,7 +22,7 @@
 
         <ScrollViewer  Grid.Column="1" Grid.Row="1" >
             <StackPanel>
-                <ListView x:Name="lvOrderList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555">
+                <ListView x:Name="lvOrderList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555"  SelectionChanged="OrderList_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

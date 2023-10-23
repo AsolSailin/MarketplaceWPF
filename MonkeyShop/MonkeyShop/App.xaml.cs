@@ -18,6 +18,5 @@ namespace MonkeyShop
         public static bool isAuth = false;
         public static User CurrentUser;
         public static IssuePoint CurrentIssuePoint;
-        public static Product CurrentProduct;
     }
 }

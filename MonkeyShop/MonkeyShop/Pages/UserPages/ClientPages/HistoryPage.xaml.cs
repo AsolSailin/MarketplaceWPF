@@ -1,4 +1,5 @@
-﻿using MonkeyShop.DataBase;
+﻿using MonkeyShop.Classes;
+using MonkeyShop.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,11 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         private void GetList()
         {
             lvOrderList.ItemsSource = App.Connection.Order.Where(x => x.User_Id == App.CurrentUser.Id).ToList();
+        }
+
+        private void OrderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NavClass.NextPage(new NavComponentsClass(new OrderPage(lvOrderList.SelectedItem as Order)));
         }
     }
 }

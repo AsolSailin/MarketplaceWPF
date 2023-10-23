@@ -1,6 +1,7 @@
 ﻿using MonkeyShop.DataBase;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,15 +18,20 @@ using System.Windows.Shapes;
 namespace MonkeyShop.Pages.UserPages.ClientPages
 {
     /// <summary>
-    /// Логика взаимодействия для ProductPage.xaml
+    /// Логика взаимодействия для OrderPage.xaml
     /// </summary>
-    public partial class ProductPage : Page
+    public partial class OrderPage : Page
     {
-        public ProductPage(Product product)
+        public OrderPage(Order order)
         {
             InitializeComponent();
-            DataContext = product;
-            tboxCost.Text = product.Cost.ToString() + "р.";
+            DataContext = order;
+            GetList(order);
+        }
+
+        private void GetList(Order order)
+        {
+            lvProductList.ItemsSource = App.Connection.ProductOrder.Where(x => x.Order_Id == order.Id).ToList();
         }
     }
 }
