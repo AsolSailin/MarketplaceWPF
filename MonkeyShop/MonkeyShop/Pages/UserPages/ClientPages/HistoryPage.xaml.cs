@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyShop.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,6 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     /// </summary>
     public partial class HistoryPage : Page
     {
-        
         public HistoryPage()
         {
             InitializeComponent();

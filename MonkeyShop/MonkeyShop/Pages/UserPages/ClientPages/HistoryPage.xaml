@@ -31,7 +31,7 @@
                                     <Run Text="Заказ №"></Run>
                                     <Run Text="{Binding Id}"></Run>
                                     <Run Text=" от"></Run>
-                                    <Run Text="{Binding PlacingDate}"></Run>
+                                    <Run Text="{Binding PlacingDate, StringFormat='d'}"></Run>
                                     </TextBlock>
                                 </StackPanel>
                                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 7 0">

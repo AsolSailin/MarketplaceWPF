@@ -45,7 +45,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
                 App.Connection.Basket.Add(newBasket);
                 App.Connection.SaveChanges();
-                MessageBox.Show("Товар добавлен в карзину");
+                MessageBox.Show("Товар добавлен в корзину");
             }
             catch
             {

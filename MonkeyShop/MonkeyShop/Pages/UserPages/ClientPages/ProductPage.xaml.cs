@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace MonkeyShop.Pages.UserPages.ClientPages
 {
     /// <summary>
-    /// Логика взаимодействия для OrderPage.xaml
+    /// Логика взаимодействия для ProductPage.xaml
     /// </summary>
-    public partial class OrderPage : Page
+    public partial class ProductPage : Page
     {
-        public OrderPage()
+        public ProductPage()
         {
             InitializeComponent();
-            GetList();
-        }
-
-        private void GetList()
-        {
-            lvProductList.ItemsSource = App.Connection.ProductOrder.ToList();
         }
     }
 }

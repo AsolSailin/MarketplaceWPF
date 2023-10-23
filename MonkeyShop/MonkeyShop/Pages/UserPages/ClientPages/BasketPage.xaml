@@ -51,7 +51,7 @@
                                             </Button.Resources>
                                         </Button>
                                     </StackPanel>
-                                    <Button Content="Удалить из карзины" Height="23" Width="170" Click="Delete_Click">
+                                    <Button Content="Удалить из корзины" Height="23" Width="170" Click="Delete_Click">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="15"/>
@@ -66,8 +66,8 @@
             </StackPanel>
         </ScrollViewer>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
-            <TextBlock Text="Итого:"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text="Итого: "></TextBlock>
             <TextBlock x:Name="tbPrice"></TextBlock>
         </StackPanel>
         

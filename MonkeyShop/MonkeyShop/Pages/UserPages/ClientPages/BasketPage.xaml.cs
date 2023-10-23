@@ -51,7 +51,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
             if (basket.Count == 1)
             {
-                if (MessageBox.Show("Вы действительно хотите убрать товар из карзины?", "",
+                if (MessageBox.Show("Вы действительно хотите убрать товар из корзины?", "",
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
@@ -85,7 +85,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                 Button button = sender as Button;
                 Basket basket = button.DataContext as Basket;
 
-                if (MessageBox.Show("Вы действительно хотите убрать товар из карзины?", "",
+                if (MessageBox.Show("Вы действительно хотите убрать товар из корзины?", "",
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
