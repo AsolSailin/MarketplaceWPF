@@ -38,6 +38,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
                 var newBasket = new Basket()
                 {
+                    Count = 1,
                     Product_Id = product.Id,
                     User_Id = App.CurrentUser.Id
                 };

@@ -35,7 +35,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Redion" Type="varchar" MaxLength="50" />
+          <Property Name="Region" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="Street" Type="varchar" MaxLength="50" />
           <Property Name="House" Type="varchar" MaxLength="50" />
@@ -73,7 +73,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Count" Type="int" />
           <Property Name="Product_Id" Type="int" />
           <Property Name="Order_Id" Type="int" />
@@ -306,7 +306,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Redion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="House" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -353,7 +353,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Count" Type="Int32" />
           <Property Name="Product_Id" Type="Int32" />
           <Property Name="Order_Id" Type="Int32" />
@@ -592,7 +592,7 @@
             <EntityTypeMapping TypeName="MonkeyShopModel.IssuePoint">
               <MappingFragment StoreEntitySet="IssuePoint">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Redion" ColumnName="Redion" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="House" ColumnName="House" />

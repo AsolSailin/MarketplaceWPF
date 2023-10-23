@@ -1,4 +1,5 @@
-﻿using MonkeyShop.DataBase;
+﻿using MonkeyShop.Classes;
+using MonkeyShop.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -22,6 +23,8 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     /// </summary>
     public partial class BasketPage : Page
     {
+        public int? Price { get; set; }
+
         public BasketPage()
         {
             InitializeComponent();
@@ -31,24 +34,22 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         private void GetList()
         {
             lvProductList.ItemsSource = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id).ToList();
+            Price = 0;
+
+            foreach (Basket basket in lvProductList.ItemsSource)
+            {
+                Price += basket.Count * basket.Product.Cost;
+            }
+            
+            tbPrice.Text = Price.ToString();
         }
 
         private void Minus_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             Basket basket = button.DataContext as Basket;
-            basket.Count++;
-            App.Connection.Basket.AddOrUpdate(basket);
-            App.Connection.SaveChanges();
-            GetList();
-        }
 
-        private void Plus_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            Basket basket = button.DataContext as Basket;
-
-            if(basket.Count == 1)
+            if (basket.Count == 1)
             {
                 if (MessageBox.Show("Вы действительно хотите убрать товар из карзины?", "",
                         MessageBoxButton.YesNo,
@@ -59,10 +60,20 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             }
             else
             {
-                basket.Count--;
+                basket.Count++;
                 App.Connection.Basket.AddOrUpdate(basket);
             }
 
+            App.Connection.SaveChanges();
+            GetList();
+        }
+
+        private void Plus_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Basket basket = button.DataContext as Basket;
+            basket.Count++;
+            App.Connection.Basket.AddOrUpdate(basket);
             App.Connection.SaveChanges();
             GetList();
         }
@@ -86,8 +97,47 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             }
             catch
             {
-                MessageBox.Show("Данная услуга не может быть удалена, так как на нее записаны клиенты", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void GetOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var userBasket = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id);
+
+            var newOrder = new Order()
+            {
+                PlacingDate = DateTime.Now,
+                PurchaseAmount = Price,
+                Point_Id = 1,
+                //Point_Id = App.CurrentIssuePoint.Id,
+                Status_Id = 1,
+                User_Id = App.CurrentUser.Id
+            };
+
+            App.Connection.Order.Add(newOrder);
+
+            foreach (var basketProduct in userBasket)
+            {
+                var newProductOrder = new ProductOrder()
+                {
+                    Count = basketProduct.Count,
+                    Product_Id = basketProduct.Product_Id,
+                    Order = newOrder
+                };
+                 
+                App.Connection.ProductOrder.Add(newProductOrder);
+                App.Connection.Basket.Remove(basketProduct);
+            }
+            
+            App.Connection.SaveChanges();
+            MessageBox.Show("Заказ успешно оформлен");
+            GetList();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavClass.NextPage(new NavComponentsClass(new HistoryPage()));
         }
     }
 }

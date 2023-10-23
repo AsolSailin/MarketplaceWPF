@@ -16,11 +16,12 @@ using System.Windows.Shapes;
 namespace MonkeyShop.Pages.UserPages.ClientPages
 {
     /// <summary>
-    /// Логика взаимодействия для OrderPage.xaml
+    /// Логика взаимодействия для HistoryPage.xaml
     /// </summary>
-    public partial class OrderPage : Page
+    public partial class HistoryPage : Page
     {
-        public OrderPage()
+        
+        public HistoryPage()
         {
             InitializeComponent();
             GetList();
@@ -28,7 +29,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void GetList()
         {
-            lvProductList.ItemsSource = App.Connection.ProductOrder.ToList();
+            lvOrderList.ItemsSource = App.Connection.Order.Where(x => x.User_Id == App.CurrentUser.Id).ToList();
         }
     }
 }

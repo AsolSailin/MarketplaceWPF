@@ -9,6 +9,54 @@
       Title="OrderPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer  Grid.Column="1" Grid.Row="1" >
+            <StackPanel>
+                <ListView x:Name="lvProductList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="110">
+                                <StackPanel Margin="3">
+                                    <Image Source="{Binding Product.Image}" Width="100" Height="100"></Image>
+                                </StackPanel>
+                                <StackPanel Margin="15" Orientation="Vertical" Width="230" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Product.Title}" TextWrapping="Wrap" Margin="0 0 0 5"></TextBlock>
+                                    <TextBlock Text="{Binding Product.Cost}">р</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}Заказ №{0} от {1}">
+                        <Binding Path="Order.Id"/>
+                        <Binding Path="Order.PlacingDate"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding IssuePoint.Region}"></TextBlock>
+                <TextBlock Text="{Binding IssuePoint.City}"></TextBlock>
+                <TextBlock Text="{Binding IssuePoint.Street}"></TextBlock>
+                <TextBlock Text="{Binding IssuePoint.House}"></TextBlock>
+            </StackPanel>
+            <TextBlock Text="{Binding OrderStatus.Title}"></TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
