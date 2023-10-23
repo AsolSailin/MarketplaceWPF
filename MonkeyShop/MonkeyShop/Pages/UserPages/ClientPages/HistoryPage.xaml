@@ -28,10 +28,10 @@
                             <Grid>
                                 <StackPanel Orientation="Horizontal" Height="50" Width="533" Margin="7 0 0 0 ">
                                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <Run Text="Заказ №"></Run>
-                                    <Run Text="{Binding Id}"></Run>
-                                    <Run Text=" от"></Run>
-                                    <Run Text="{Binding PlacingDate, StringFormat='d'}"></Run>
+                                        <Run Text="Заказ №"></Run>
+                                        <Run Text="{Binding Id}"></Run>
+                                        <Run Text=" от"></Run>
+                                        <Run Text="{Binding PlacingDate, StringFormat='d'}"></Run>
                                     </TextBlock>
                                 </StackPanel>
                                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 7 0">

@@ -27,6 +27,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             InitializeComponent();
             DataContext = order;
             GetList(order);
+            tboxPrice.Text = order.PurchaseAmount.ToString();
         }
 
         private void GetList(Order order)

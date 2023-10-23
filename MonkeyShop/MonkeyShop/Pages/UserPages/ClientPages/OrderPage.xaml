@@ -12,6 +12,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,15 +23,15 @@
 
         <ScrollViewer  Grid.Column="1" Grid.Row="1" >
             <StackPanel>
-                <ListView x:Name="lvProductList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555">
+                <ListView x:Name="lvProductList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="380">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="110">
                                 <StackPanel Margin="3">
                                     <Image Source="{Binding Product.Image}" Width="100" Height="100"></Image>
                                 </StackPanel>
-                                <StackPanel Margin="15" Orientation="Vertical" Width="407" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                    <TextBlock Text="{Binding Product.Title}" TextWrapping="Wrap" Width="300" HorizontalAlignment="Left"></TextBlock>
+                                <StackPanel Margin="15" Orientation="Vertical" Width="230" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding Product.Title}" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left"></TextBlock>
                                     <TextBlock Text="{Binding Product.Cost}" HorizontalAlignment="Right">р. за шт</TextBlock>
                                     <TextBlock HorizontalAlignment="Right">
                                         <Run Text="Кол-во: "></Run>
@@ -44,9 +45,27 @@
             </StackPanel>
         </ScrollViewer>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock Text="Итого: "></TextBlock>
-            <TextBlock x:Name="tbPrice"></TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="2" Width="250" VerticalAlignment="Center">
+            <StackPanel Margin="7">
+                <TextBlock Height="30" VerticalAlignment="Center">
+                    <Run Text="Заказ №"></Run>
+                    <Run Text="{Binding Id}"></Run>
+                    <Run Text=" от"></Run>
+                    <Run Text="{Binding PlacingDate, StringFormat='d'}"></Run>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="7">
+                <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Пункт выдачи: " Margin="0 0 6.5 0"></TextBlock>
+                <TextBox x:Name="tboxPoint" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="7">
+                <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Сумма заказа:  "></TextBlock>
+                <TextBox x:Name="tboxPrice" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="7">
+                <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Статус заказа:  "></TextBlock>
+                <TextBox x:Name="tboxStatus" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True"></TextBox>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
