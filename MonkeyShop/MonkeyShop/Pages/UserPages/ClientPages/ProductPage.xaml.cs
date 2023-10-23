@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyShop.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     /// </summary>
     public partial class ProductPage : Page
     {
-        public ProductPage()
+        private Product Product { get; set; }
+
+        public ProductPage(Product product)
         {
             InitializeComponent();
+            Product = product;
+            DataContext = Product;
+            tboxCost.Text = product.Cost.ToString() + "р.";
         }
     }
 }

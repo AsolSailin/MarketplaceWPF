@@ -20,7 +20,7 @@
         
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Border BorderThickness="1" BorderBrush="#FF5C176B">
-                <Image Source="{Binding MainImageByte}" Width="250" Height="250" x:Name="imgImage"/>
+                <Image Width="250" Height="250" x:Name="imgImage"/>
             </Border>
             <Button x:Name="btnImage" Height="30" Content="+файл" Click="ImageBtn_Click">
                 <Button.Resources>

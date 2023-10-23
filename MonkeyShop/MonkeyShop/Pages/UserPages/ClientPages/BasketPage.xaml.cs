@@ -41,7 +41,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                 Price += basket.Count * basket.Product.Cost;
             }
             
-            tbPrice.Text = Price.ToString();
+            tbPrice.Text = Price.ToString() + "р.";
         }
 
         private void Minus_Click(object sender, RoutedEventArgs e)

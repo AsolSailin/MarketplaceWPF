@@ -57,5 +57,10 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         {
             NavClass.NextPage(new NavComponentsClass(new BasketPage()));
         }
+
+        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NavClass.NextPage(new NavComponentsClass(new ProductPage(lvProductList.SelectedItem as Product)));
+        }
     }
 }

@@ -36,7 +36,7 @@
                                 </StackPanel>
                                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 7 0">
                                     <TextBlock Text="Сумма:" HorizontalAlignment="Right"></TextBlock>
-                                    <TextBlock Text="{Binding PurchaseAmount}" HorizontalAlignment="Right">р</TextBlock>
+                                    <TextBlock Text="{Binding PurchaseAmount}" HorizontalAlignment="Right">р.</TextBlock>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

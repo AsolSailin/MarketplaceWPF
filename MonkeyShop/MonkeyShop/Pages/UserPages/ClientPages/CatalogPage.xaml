@@ -49,7 +49,7 @@
 
         <ScrollViewer  Grid.Column="1" Grid.Row="1" >
             <StackPanel>
-                <ListView x:Name="lvProductList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555">
+                <ListView x:Name="lvProductList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555" SelectionChanged="ProductList_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Height="110">
@@ -64,7 +64,7 @@
                                 </StackPanel>
                                 <StackPanel Margin="15" Orientation="Vertical" Width="230" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="0 0 0 5"></TextBlock>
-                                    <TextBlock Text="{Binding Cost}">р</TextBlock>
+                                    <TextBlock Text="{Binding Cost}">р.</TextBlock>
                                 </StackPanel>
                                 <Button Content="Добавить в корзину" Height="23" Width="170" Margin="0 0 5 0" VerticalAlignment="Center" Click="AddProduct_Click">
                                     <Button.Resources>

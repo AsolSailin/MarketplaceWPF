@@ -151,7 +151,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserPages\ClientPages\OrderPage.xaml">
+    <Page Include="Pages\UserPages\ClientPages\ProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,8 +187,8 @@
     <Compile Include="Pages\UserPages\ClientPages\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserPages\ClientPages\OrderPage.xaml.cs">
-      <DependentUpon>OrderPage.xaml</DependentUpon>
+    <Compile Include="Pages\UserPages\ClientPages\ProductPage.xaml.cs">
+      <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserPages\CommonPages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
