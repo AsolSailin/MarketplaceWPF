@@ -29,6 +29,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         {
             InitializeComponent();
             GetList();
+            cbPoint.ItemsSource = App.Connection.IssuePoint.ToList();
         }
 
         private void GetList()
@@ -103,41 +104,60 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void GetOrder_Click(object sender, RoutedEventArgs e)
         {
-            var userBasket = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id);
-
-            var newOrder = new Order()
+            try
             {
-                PlacingDate = DateTime.Now,
-                PurchaseAmount = Price,
-                Point_Id = 1,
-                //Point_Id = App.CurrentIssuePoint.Id,
-                Status_Id = 1,
-                User_Id = App.CurrentUser.Id
-            };
-
-            App.Connection.Order.Add(newOrder);
-
-            foreach (var basketProduct in userBasket)
-            {
-                var newProductOrder = new ProductOrder()
+                if (App.CurrentIssuePoint != null)
                 {
-                    Count = basketProduct.Count,
-                    Product_Id = basketProduct.Product_Id,
-                    Order = newOrder
-                };
-                 
-                App.Connection.ProductOrder.Add(newProductOrder);
-                App.Connection.Basket.Remove(basketProduct);
+                    var userBasket = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id);
+
+                    var newOrder = new Order()
+                    {
+                        PlacingDate = DateTime.Now,
+                        PurchaseAmount = Price,
+                        Point_Id = App.CurrentIssuePoint.Id,
+                        Status_Id = 1,
+                        User_Id = App.CurrentUser.Id
+                    };
+
+                    App.Connection.Order.Add(newOrder);
+
+                    foreach (var basketProduct in userBasket)
+                    {
+                        var newProductOrder = new ProductOrder()
+                        {
+                            Count = basketProduct.Count,
+                            Product_Id = basketProduct.Product_Id,
+                            Order = newOrder
+                        };
+
+                        App.Connection.ProductOrder.Add(newProductOrder);
+                        App.Connection.Basket.Remove(basketProduct);
+                    }
+
+                    App.Connection.SaveChanges();
+                    MessageBox.Show("Заказ успешно оформлен");
+                    GetList();
+                    App.CurrentIssuePoint = null;
+                }
+                else
+                {
+                    MessageBox.Show("Для оформления заказа необходимо выбрать пункт выдачи!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            
-            App.Connection.SaveChanges();
-            MessageBox.Show("Заказ успешно оформлен");
-            GetList();
+            catch
+            {
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavClass.NextPage(new NavComponentsClass(new HistoryPage()));
+        }
+
+        private void Point_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.CurrentIssuePoint = cbPoint.SelectedItem as IssuePoint;
         }
     }
 }

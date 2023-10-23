@@ -28,6 +28,8 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             DataContext = order;
             GetList(order);
             tboxPrice.Text = order.PurchaseAmount.ToString();
+            tboxPoint.Text = order.IssuePoint.Region + ", г." + order.IssuePoint.City + 
+                ", ул." + order.IssuePoint.Street + ", д." + order.IssuePoint.House;
         }
 
         private void GetList(Order order)

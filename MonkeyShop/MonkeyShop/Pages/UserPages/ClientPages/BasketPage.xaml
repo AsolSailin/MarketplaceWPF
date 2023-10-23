@@ -20,6 +20,27 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Пункт выдачи: " VerticalAlignment="Center"/>
+                <ComboBox x:Name="cbPoint" Margin="0 0 5 0" Width="330" Height="30" VerticalContentAlignment="Center" SelectionChanged="Point_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding Region}"></Run>
+                                <Run Text=", г."></Run>
+                                <Run Text="{Binding City}"></Run>
+                                <Run Text=", ул."></Run>
+                                <Run Text="{Binding Street}"></Run>
+                                <Run Text=", д."></Run>
+                                <Run Text="{Binding House}"></Run>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
         <ScrollViewer  Grid.Column="1" Grid.Row="1" >
             <StackPanel>
                 <ListView x:Name="lvProductList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555">
