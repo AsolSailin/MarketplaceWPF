@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyShop.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -29,8 +30,7 @@ namespace MonkeyShop.Pages.UserPages.EmployeePages
 
         private void CreateQRCode_Click(object sender, RoutedEventArgs e)
         {
-            string soucer_xl = "https://www.ozon.ru/search/?from_global=true&text="; 
-            //https://www.ozon.ru/search/?from_global=true&text=саше+лаванды+и+хвои
+            string soucer_xl = "https://www.ozon.ru/search/?from_global=true&text=" + tboxNumber.Text;
             QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
             QRCoder.QRCodeData data = qr.CreateQrCode(soucer_xl, QRCoder.QRCodeGenerator.ECCLevel.L);
             QRCoder.QRCode code = new QRCoder.QRCode(data);
