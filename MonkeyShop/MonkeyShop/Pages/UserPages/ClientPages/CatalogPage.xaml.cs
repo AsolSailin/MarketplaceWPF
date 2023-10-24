@@ -23,10 +23,40 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     /// </summary>
     public partial class CatalogPage : Page
     {
+        private int number = 0;
+
         public CatalogPage()
         {
             InitializeComponent();
-            lvProductList.ItemsSource = App.Connection.Product.ToList();
+            //lvProductList.ItemsSource = App.Connection.Product.ToList();
+            GetList();
+        }
+
+        private void GetList()
+        {
+            IEnumerable<Product> products = App.Connection.Product;
+            products = products.Skip(number).Take(2);
+            lvProductList.ItemsSource = products;
+        }
+
+        private void BackProduct_Click(object sender, RoutedEventArgs e)
+        {
+            number--;
+
+            if (number < 0)
+                number = 0;
+
+            GetList();
+        }
+
+        private void NextProduct_Click(object sender, RoutedEventArgs e)
+        {
+            number++;
+
+            if (lvProductList.Items.Count < 2)
+                number--;
+
+            GetList();
         }
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
