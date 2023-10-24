@@ -34,8 +34,10 @@ namespace MonkeyShop.Pages.GeneralPages
             {
                 var data = App.Connection.Account.Where(x => x.Password == tbPassword.Password
                 && x.Login == tbLogin.Text).FirstOrDefault();
+
                 if (data != null)
                 {
+                    App.CurrentAccount = data;
                     App.CurrentUser = App.Connection.User.Where(x => x.Id == data.User_Id).FirstOrDefault();
                     NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
                 }

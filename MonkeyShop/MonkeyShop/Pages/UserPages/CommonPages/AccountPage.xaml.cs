@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyShop.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
     /// </summary>
     public partial class AccountPage : Page
     {
-        public AccountPage()
+        public AccountPage(Account account)
         {
             InitializeComponent();
+            DataContext = account;
         }
     }
 }

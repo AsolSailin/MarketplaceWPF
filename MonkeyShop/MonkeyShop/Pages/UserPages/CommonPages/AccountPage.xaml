@@ -9,6 +9,91 @@
       Title="AccountPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.RowSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">ЛИЧНЫЕ ДАННЫЕ</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Фамилия:</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tboxSurname" Text="{Binding User.Surname}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="135" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Имя:</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tboxName" Text="{Binding User.Name}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="135" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Отчество:</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="tboxPatronymic" Text="{Binding User.Patronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="135" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.RowSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">ДАННЫЕ ДЛЯ ВХОДА:</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Логин:</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tboxLogin" Text="{Binding Login}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="135" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Пароль:</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tboxPassword" Text="{Binding Password}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="135" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBlock Grid.Row="3" FontSize="17" Margin="15"></TextBlock>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Grid.Column="0" Height="30" Width="130" VerticalAlignment="Center" Content="Редактировать">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+            <Button Grid.Column="1" Height="30" Width="130" VerticalAlignment="Center" Content="Удалить">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

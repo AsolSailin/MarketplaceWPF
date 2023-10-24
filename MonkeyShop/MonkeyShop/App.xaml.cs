@@ -17,6 +17,7 @@ namespace MonkeyShop
         public static MonkeyShopEntities Connection = new MonkeyShopEntities();
         public static bool isAuth = false;
         public static User CurrentUser;
+        public static Account CurrentAccount;
         public static IssuePoint CurrentIssuePoint;
     }
 }
