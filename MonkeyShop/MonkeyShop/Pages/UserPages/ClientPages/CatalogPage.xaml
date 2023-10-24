@@ -23,11 +23,11 @@
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Поиск" VerticalAlignment="Center"/>
-                <TextBox x:Name="tbSearch" Width="130" VerticalContentAlignment="Center" Height="30"/>
+                <TextBox x:Name="tbSearch" Width="130" VerticalContentAlignment="Center" Height="30" TextChanged="SearchChanged"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
                 <TextBlock Text="Сортировка" VerticalAlignment="Center"/>
-                <ComboBox x:Name="cbSort" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center">
+                <ComboBox x:Name="cbSort" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center" SelectionChanged="SortingSelect">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding}"/>
@@ -37,10 +37,10 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Фильтрация" VerticalAlignment="Center"/>
-                <ComboBox x:Name="cbFilter" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center">
+                <ComboBox x:Name="cbFilter" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center" SelectionChanged="FilteringSelect">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
+                            <TextBlock Text="{Binding Title}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
@@ -68,7 +68,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
-            <ListView x:Name="lvProductList" Height="270" Width="550" VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=2}">
+            <ListView x:Name="lvProductList" Height="270" Width="550" VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=2}" SelectionChanged="ProductList_SelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>

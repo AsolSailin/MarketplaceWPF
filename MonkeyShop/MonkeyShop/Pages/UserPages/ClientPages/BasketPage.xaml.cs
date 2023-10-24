@@ -114,9 +114,9 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                     {
                         PlacingDate = DateTime.Now,
                         PurchaseAmount = Price,
-                        Point_Id = App.CurrentIssuePoint.Id,
-                        Status_Id = 1,
-                        User_Id = App.CurrentUser.Id
+                        IssuePoint = App.CurrentIssuePoint,
+                        User = App.CurrentUser,
+                        Status_Id = 1
                     };
 
                     App.Connection.Order.Add(newOrder);
@@ -126,7 +126,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                         var newProductOrder = new ProductOrder()
                         {
                             Count = basketProduct.Count,
-                            Product_Id = basketProduct.Product_Id,
+                            Product = basketProduct.Product,
                             Order = newOrder
                         };
 

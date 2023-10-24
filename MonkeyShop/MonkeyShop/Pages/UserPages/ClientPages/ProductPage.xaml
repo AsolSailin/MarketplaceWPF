@@ -23,10 +23,12 @@
         <StackPanel Grid.Row="0" Grid.Column="1" Width="300" VerticalAlignment="Center">
             <TextBlock Text="НАЗВАНИЕ"></TextBlock>
             <TextBox Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Title}"></TextBox>
+            <TextBlock Text="КАТЕГОРИЯ"></TextBlock>
+            <TextBox Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Category.Title}"></TextBox>
             <TextBlock Text="СТОИМОСТЬ"></TextBlock>
             <TextBox x:Name="tboxCost" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True"></TextBox>
             <TextBlock Text="ОПИСАНИЕ"></TextBlock>
-            <TextBox Height="150" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Description}"></TextBox>
+            <TextBox Height="100" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Description}"></TextBox>
         </StackPanel>
     </Grid>
 </Page>

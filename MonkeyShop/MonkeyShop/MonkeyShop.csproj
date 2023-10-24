@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Classes\NavClass.cs" />
     <Compile Include="Classes\NavComponentsClass.cs" />
+    <Compile Include="Classes\SortingClass.cs" />
     <Compile Include="DataBase\Account.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

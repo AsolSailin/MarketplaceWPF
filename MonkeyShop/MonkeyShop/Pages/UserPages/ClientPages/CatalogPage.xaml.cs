@@ -24,11 +24,23 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     public partial class CatalogPage : Page
     {
         private int number = 0;
+        private Func<Product, bool> _filterQuery = x => true;
+        private Func<Product, object> _sortQuery = x => x.Id;
+        private readonly List<Product> _products;
+        private readonly string _allProduct = "Все";
+        private List<Product> _sorted;
 
         public CatalogPage()
         {
             InitializeComponent();
             //lvProductList.ItemsSource = App.Connection.Product.ToList();
+            _products = App.Connection.Product.ToList();
+
+            cbSort.ItemsSource = SortingClass.Methods;
+            cbFilter.ItemsSource = App.Connection.Category.ToList();
+            cbSort.SelectedIndex = 0;
+            cbFilter.SelectedIndex = 0;
+
             GetList();
         }
 
@@ -91,6 +103,51 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NavClass.NextPage(new NavComponentsClass(new ProductPage(lvProductList.SelectedItem as Product)));
+        }
+
+        private void SortingSelect(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cbSort.SelectedIndex)
+            {
+                case 0:
+                    _sortQuery = x => x.Id;
+                    break;
+                case 1:
+                    _sortQuery = x => x.Cost;
+                    break;
+                case 2:
+                    _sortQuery = x => -x.Cost;
+                    break;
+            }
+
+            FilterAndSort();
+        }
+
+        private void FilteringSelect(object sender, SelectionChangedEventArgs e)
+        {
+            FilterAndSort();
+        }
+
+        private void FilterAndSort()
+        {
+            _sorted = _products.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
+            lvProductList.ItemsSource = _products.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
+
+            if (tbSearch.Text != "")
+                Search();
+        }
+
+        private void Search()
+        {
+            lvProductList.ItemsSource = _sorted
+                .Where(x => string.Join(" ", x.Title)
+                .ToLower()
+                .Contains(tbSearch.Text.ToLower()))
+                .ToList();
+        }
+        private void SearchChanged(object sender, TextChangedEventArgs e)
+        {
+            Search();
         }
     }
 }

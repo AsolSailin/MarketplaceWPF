@@ -26,7 +26,8 @@ namespace MonkeyShop.Pages.UserPages.ManagerPages
     /// </summary>
     public partial class NewProductPage : Page
     {
-        public byte[] Image { get; set; }
+        private byte[] Image { get; set; }
+        private Category CurrentCategory { get; set; }
 
         public NewProductPage()
         {
@@ -37,14 +38,15 @@ namespace MonkeyShop.Pages.UserPages.ManagerPages
         {
             try
             {
-                if (tbTitle.Text != "" && tbCost.Text != "" && tbDescription.Text != "" && Image != null)
+                if (tboxTitle.Text != "" && tboxCost.Text != "" && tboxDescription.Text != "" && Image != null)
                 {
                     var newProduct = new Product()
                     {
-                        Title = tbTitle.Text,
-                        Cost = int.Parse(tbCost.Text),
-                        Description = tbDescription.Text,
-                        Image = Image
+                        Title = tboxTitle.Text,
+                        Cost = int.Parse(tboxCost.Text),
+                        Description = tboxDescription.Text,
+                        Image = Image,
+                        Category = CurrentCategory
                     };
 
                     App.Connection.Product.Add(newProduct);
@@ -80,6 +82,11 @@ namespace MonkeyShop.Pages.UserPages.ManagerPages
             {
                 MessageBox.Show("Неверный формат файла!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void cbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CurrentCategory = cbCategory.SelectedItem as Category;
         }
     }
 }
