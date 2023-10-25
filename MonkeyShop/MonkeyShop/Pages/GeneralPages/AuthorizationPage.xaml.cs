@@ -1,5 +1,6 @@
 ﻿using MonkeyShop.Classes;
 using MonkeyShop.Pages.UserPages.ClientPages;
+using MonkeyShop.Pages.UserPages.EmployeePages;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -39,7 +40,19 @@ namespace MonkeyShop.Pages.GeneralPages
                 {
                     App.CurrentAccount = data;
                     App.CurrentUser = App.Connection.User.Where(x => x.Id == data.User_Id).FirstOrDefault();
-                    NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
+
+                    switch (App.CurrentUser.Role.Title)
+                    {
+                        case "Клиент":
+                            NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
+                            break;
+                        case "Менеджер":
+                            NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
+                            break;
+                        case "Сотрудник пункта выдачи":
+                            NavClass.NextPage(new NavComponentsClass(new IssuancePage()));
+                            break;
+                    }
                 }
                 else
                 {

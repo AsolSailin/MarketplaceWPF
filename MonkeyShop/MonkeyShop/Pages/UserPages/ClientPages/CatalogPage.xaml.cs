@@ -29,11 +29,12 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         private readonly List<Product> _products;
         private readonly string _allProduct = "Все";
         private List<Product> _sorted;
+        private string btnStringClick;
 
         public CatalogPage()
         {
             InitializeComponent();
-            //lvProductList.ItemsSource = App.Connection.Product.ToList();
+
             _products = App.Connection.Product.ToList();
 
             cbSort.ItemsSource = SortingClass.Methods;
@@ -46,9 +47,15 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void GetList()
         {
-            IEnumerable<Product> products = App.Connection.Product;
+            lvProductList.ItemsSource = App.Connection.Product.ToList();
+            /*IEnumerable<Product> products = App.Connection.Product;
             products = products.Skip(number).Take(2);
-            lvProductList.ItemsSource = products;
+            lvProductList.ItemsSource = products;*/
+        }
+
+        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NavClass.NextPage(new NavComponentsClass(new ProductPage(lvProductList.SelectedItem as Product)));
         }
 
         private void BackProduct_Click(object sender, RoutedEventArgs e)
@@ -95,14 +102,41 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             }
         }
 
-        private void GetBasket_Click(object sender, RoutedEventArgs e)
+        private void DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-            NavClass.NextPage(new NavComponentsClass(new BasketPage()));
+            try
+            {
+                Button button = sender as Button;
+                Product product = button.DataContext as Product;
+
+                if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    App.Connection.Product.Remove(product);
+                    App.Connection.SaveChanges();
+                }
+
+                GetList();
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SearchChanged(object sender, TextChangedEventArgs e)
         {
-            NavClass.NextPage(new NavComponentsClass(new ProductPage(lvProductList.SelectedItem as Product)));
+            Search();
+        }
+
+        private void Search()
+        {
+            lvProductList.ItemsSource = _sorted
+                .Where(x => string.Join(" ", x.Title)
+                .ToLower()
+                .Contains(tbSearch.Text.ToLower()))
+                .ToList();
         }
 
         private void SortingSelect(object sender, SelectionChangedEventArgs e)
@@ -135,19 +169,6 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
             if (tbSearch.Text != "")
                 Search();
-        }
-
-        private void Search()
-        {
-            lvProductList.ItemsSource = _sorted
-                .Where(x => string.Join(" ", x.Title)
-                .ToLower()
-                .Contains(tbSearch.Text.ToLower()))
-                .ToList();
-        }
-        private void SearchChanged(object sender, TextChangedEventArgs e)
-        {
-            Search();
         }
     }
 }

@@ -32,6 +32,7 @@ namespace MonkeyShop.Pages.UserPages.ManagerPages
         public NewProductPage()
         {
             InitializeComponent();
+            cbCategory.ItemsSource = App.Connection.Category.ToList();
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)

@@ -150,11 +150,6 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavClass.NextPage(new NavComponentsClass(new HistoryPage()));
-        }
-
         private void Point_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             App.CurrentIssuePoint = cbPoint.SelectedItem as IssuePoint;
