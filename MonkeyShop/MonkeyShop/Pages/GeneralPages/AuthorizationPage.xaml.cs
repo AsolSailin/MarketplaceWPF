@@ -31,10 +31,10 @@ namespace MonkeyShop.Pages.GeneralPages
 
         private void AuthoBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (tbLogin.Text != "" && tbPassword.Password != "")
+            if (tboxLogin.Text != "" && pboxPassword.Password != "")
             {
-                var data = App.Connection.Account.Where(x => x.Password == tbPassword.Password
-                && x.Login == tbLogin.Text).FirstOrDefault();
+                var data = App.Connection.Account.Where(x => x.Password == pboxPassword.Password && 
+                x.Login == tboxLogin.Text).FirstOrDefault();
 
                 if (data != null)
                 {

@@ -1,6 +1,7 @@
 ﻿using MonkeyShop.DataBase;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace MonkeyShop.Pages.UserPages.EmployeePages
     /// </summary>
     public partial class IssuancePage : Page
     {
+        private Order CurrentOrder { get; set; }
+
         public IssuancePage()
         {
             InitializeComponent();
@@ -30,28 +33,44 @@ namespace MonkeyShop.Pages.UserPages.EmployeePages
 
         private void CreateQRCode_Click(object sender, RoutedEventArgs e)
         {
-            string soucer_xl = "https://www.ozon.ru/search/?from_global=true&text=" + tboxNumber.Text;
-            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
-            QRCoder.QRCodeData data = qr.CreateQrCode(soucer_xl, QRCoder.QRCodeGenerator.ECCLevel.L);
-            QRCoder.QRCode code = new QRCoder.QRCode(data);
-            Bitmap bitmap = code.GetGraphic(100);
-
-            using (MemoryStream memory = new MemoryStream())
+            try
             {
-                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-                memory.Position = 0;
-                BitmapImage bitmapimage = new BitmapImage();
-                bitmapimage.BeginInit();
-                bitmapimage.StreamSource = memory;
-                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapimage.EndInit();
-                imageQr.Source = bitmapimage;
+                CurrentOrder = App.Connection.Order.Where(x => x.Id == int.Parse(tboxNumber.Text)).FirstOrDefault();
+
+                if (CurrentOrder != null)
+                {
+                    string soucer_xl = "https://www.ozon.ru/search/?from_global=true&text=" + tboxNumber.Text;
+                    QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
+                    QRCoder.QRCodeData data = qr.CreateQrCode(soucer_xl, QRCoder.QRCodeGenerator.ECCLevel.L);
+                    QRCoder.QRCode code = new QRCoder.QRCode(data);
+                    Bitmap bitmap = code.GetGraphic(100);
+
+                    using (MemoryStream memory = new MemoryStream())
+                    {
+                        bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                        memory.Position = 0;
+                        BitmapImage bitmapimage = new BitmapImage();
+                        bitmapimage.BeginInit();
+                        bitmapimage.StreamSource = memory;
+                        bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapimage.EndInit();
+                        imageQr.Source = bitmapimage;
+                    }
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Неверный номер заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void GetOrder_Click(object sender, RoutedEventArgs e)
         {
+            CurrentOrder.Status_Id = 5;
 
+            App.Connection.Order.AddOrUpdate(CurrentOrder);
+            App.Connection.SaveChanges();
+            MessageBox.Show("Заказ выдан!");
         }
     }
 }

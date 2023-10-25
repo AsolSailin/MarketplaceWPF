@@ -27,6 +27,7 @@ namespace MonkeyShop.DataBase
         public string Description { get; set; }
         public byte[] Image { get; set; }
         public Nullable<int> Category_Id { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basket> Basket { get; set; }

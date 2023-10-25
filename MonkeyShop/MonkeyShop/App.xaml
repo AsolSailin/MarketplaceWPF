@@ -23,6 +23,7 @@
             <Setter Property="Foreground" Value="#FF5C176B"/>
         </Style>
         <Style TargetType="PasswordBox">
+            <Setter Property="FontFamily" Value="Arial Black"/>
             <Setter Property="Background" Value="#f3e9f7"/>
             <Setter Property="Foreground" Value="#FF5C176B"/>
         </Style>

@@ -29,19 +29,19 @@ namespace MonkeyShop.Pages.GeneralPages
 
         private void RegBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (tbSurname.Text != "" && tbName.Text != "" && tbPatronymic.Text != "" &&
-                tbLogin.Text != "" && pbPassword.Password != "")
+            if (tboxSurname.Text != "" && tboxName.Text != "" && tboxPatronymic.Text != "" &&
+                tboxLogin.Text != "" && pboxPassword.Password != "")
             {
                 User newUser = new User()
                 {
-                    Surname = tbSurname.Text,
-                    Name = tbName.Text,
-                    Patronymic = tbPatronymic.Text
+                    Surname = tboxSurname.Text,
+                    Name = tboxName.Text,
+                    Patronymic = tboxPatronymic.Text
                 };
                 Account newAccount = new Account()
                 {
-                    Login = tbLogin.Text,
-                    Password = pbPassword.Password
+                    Login = tboxLogin.Text,
+                    Password = pboxPassword.Password
                 };
 
                 newUser.Account.Add(newAccount);
@@ -57,7 +57,7 @@ namespace MonkeyShop.Pages.GeneralPages
             }
         }
 
-        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        private void GetAuthBtn_Click(object sender, RoutedEventArgs e)
         {
             NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
         }

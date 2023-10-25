@@ -26,6 +26,7 @@
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Button.Resources>
+            
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="\Images\Account.png"/>

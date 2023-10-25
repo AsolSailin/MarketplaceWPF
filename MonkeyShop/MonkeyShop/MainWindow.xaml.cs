@@ -4,7 +4,6 @@ using MonkeyShop.Pages;
 using MonkeyShop.Pages.GeneralPages;
 using MonkeyShop.Pages.UserPages.ClientPages;
 using MonkeyShop.Pages.UserPages.CommonPages;
-using MonkeyShop.Pages.UserPages.ManagerPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;

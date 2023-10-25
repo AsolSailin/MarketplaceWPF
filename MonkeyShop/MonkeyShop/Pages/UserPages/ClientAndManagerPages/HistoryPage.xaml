@@ -22,7 +22,7 @@
 
         <ScrollViewer  Grid.Column="1" Grid.Row="1" >
             <StackPanel>
-                <ListView x:Name="lvOrderList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555"  SelectionChanged="OrderList_SelectionChanged">
+                <ListView x:Name="lvOrderList" HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=4}" Width="555" SelectionChanged="OrderList_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -34,9 +34,10 @@
                                         <Run Text="{Binding PlacingDate, StringFormat='d'}"></Run>
                                     </TextBlock>
                                 </StackPanel>
+                                
                                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 7 0">
                                     <TextBlock Text="Сумма:" HorizontalAlignment="Right"></TextBlock>
-                                    <TextBlock Text="{Binding PurchaseAmount}" HorizontalAlignment="Right">р.</TextBlock>
+                                    <TextBlock Text="{Binding Cost, StringFormat={}{0} руб.}" HorizontalAlignment="Right"></TextBlock>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

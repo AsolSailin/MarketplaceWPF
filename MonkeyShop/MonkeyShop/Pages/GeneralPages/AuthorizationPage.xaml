@@ -18,9 +18,10 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="300">
             <TextBlock Text="ЛОГИН"></TextBlock>
-            <TextBox x:Name="tbLogin" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></TextBox>
-            <TextBlock Text="ПАРОЛЬ"></TextBlock>
-            <PasswordBox x:Name="tbPassword" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></PasswordBox>
+            <TextBox x:Name="tboxLogin" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></TextBox>
+            <TextBlock Text="ПАРОЛЬ" Margin="0 5 0 0"></TextBlock>
+            <PasswordBox x:Name="pboxPassword" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0"></PasswordBox>
+            
             <StackPanel Margin="0 15 0 0">
                 <Button Height="30" Content="ВОЙТИ" Click="AuthoBtn_Click">
                     <Button.Resources>
@@ -29,11 +30,10 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <TextBlock x:Name="hlLink" HorizontalAlignment="Center" FontSize="13">
+                <TextBlock HorizontalAlignment="Center" FontSize="13">
                     <Hyperlink Click="Hyperlink_Click">Нет аккаунта?</Hyperlink>
                 </TextBlock>
             </StackPanel>
         </StackPanel>
-
     </Grid>
 </Page>

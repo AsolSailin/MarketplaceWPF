@@ -1,5 +1,6 @@
 ﻿using MonkeyShop.Classes;
 using MonkeyShop.DataBase;
+using MonkeyShop.Pages.UserPages.CommonPages;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -23,17 +24,19 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     /// </summary>
     public partial class BasketPage : Page
     {
+
+        public IssuePoint CurrentIssuePoint { get; set; }
         public int? Price { get; set; }
 
         public BasketPage()
         {
             InitializeComponent();
             GetList();
-            cbPoint.ItemsSource = App.Connection.IssuePoint.ToList();
         }
 
         private void GetList()
         {
+            cbPoint.ItemsSource = App.Connection.IssuePoint.ToList();
             lvProductList.ItemsSource = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id).ToList();
             Price = 0;
 
@@ -55,9 +58,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                 if (MessageBox.Show("Вы действительно хотите убрать товар из корзины?", "",
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
                     App.Connection.Basket.Remove(basket);
-                }
             }
             else
             {
@@ -73,9 +74,12 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         {
             Button button = sender as Button;
             Basket basket = button.DataContext as Basket;
+
             basket.Count++;
+
             App.Connection.Basket.AddOrUpdate(basket);
             App.Connection.SaveChanges();
+
             GetList();
         }
 
@@ -106,7 +110,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         {
             try
             {
-                if (App.CurrentIssuePoint != null)
+                if (CurrentIssuePoint != null)
                 {
                     var userBasket = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id);
 
@@ -114,7 +118,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                     {
                         PlacingDate = DateTime.Now,
                         PurchaseAmount = Price,
-                        IssuePoint = App.CurrentIssuePoint,
+                        IssuePoint = CurrentIssuePoint,
                         User = App.CurrentUser,
                         Status_Id = 1
                     };
@@ -136,8 +140,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
                     App.Connection.SaveChanges();
                     MessageBox.Show("Заказ успешно оформлен");
-                    GetList();
-                    App.CurrentIssuePoint = null;
+                    NavClass.NextPage(new NavComponentsClass(new OrderPage(newOrder)));
                 }
                 else
                 {
@@ -152,7 +155,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void Point_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            App.CurrentIssuePoint = cbPoint.SelectedItem as IssuePoint;
+            CurrentIssuePoint = cbPoint.SelectedItem as IssuePoint;
         }
     }
 }

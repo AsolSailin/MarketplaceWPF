@@ -170,10 +170,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserPages\ManagerPages\NewProductPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\GeneralPages\AuthorizationPage.xaml.cs">
@@ -205,9 +201,6 @@
     </Compile>
     <Compile Include="Pages\UserPages\EmployeePages\IssuancePage.xaml.cs">
       <DependentUpon>IssuancePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\UserPages\ManagerPages\NewProductPage.xaml.cs">
-      <DependentUpon>NewProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -249,6 +242,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Account.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DataBase\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -259,8 +255,6 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Resource Include="Images\Account.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

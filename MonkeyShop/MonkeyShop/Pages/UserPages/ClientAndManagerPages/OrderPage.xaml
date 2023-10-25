@@ -30,13 +30,11 @@
                                 <StackPanel Margin="3">
                                     <Image Source="{Binding Product.Image}" Width="100" Height="100"></Image>
                                 </StackPanel>
+                                
                                 <StackPanel Margin="15" Orientation="Vertical" Width="230" VerticalAlignment="Center" HorizontalAlignment="Right">
                                     <TextBlock Text="{Binding Product.Title}" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left"></TextBlock>
-                                    <TextBlock Text="{Binding Product.Cost}" HorizontalAlignment="Right">р. за шт</TextBlock>
-                                    <TextBlock HorizontalAlignment="Right">
-                                        <Run Text="Кол-во: "></Run>
-                                        <Run Text="{Binding Count}"></Run>
-                                    </TextBlock>
+                                    <TextBlock Text="{Binding Product.Cost}" HorizontalAlignment="Right">руб. за шт</TextBlock>
+                                    <TextBlock Text="{Binding Count, StringFormat={}Кол-во: {0}}" HorizontalAlignment="Right"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -54,6 +52,7 @@
                     <Run Text="{Binding PlacingDate, StringFormat='d'}"></Run>
                 </TextBlock>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" Margin="7">
                 <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Пункт выдачи: " Margin="0 0 6.5 0"></TextBlock>
                 <TextBox x:Name="tboxPoint" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True">
@@ -65,10 +64,12 @@
                     </MultiBinding>
                 </TextBox>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" Margin="7">
                 <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Сумма заказа:  "></TextBlock>
                 <TextBox x:Name="tboxPrice" Text="{Binding PurchaseAmount, StringFormat={}{0}руб.}" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True"></TextBox>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" Margin="7">
                 <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Статус заказа:  "></TextBlock>
                 <TextBox x:Name="tboxStatus" Text="{Binding OrderStatus.Title}" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Visibility="{Binding ClientVisibilityMethod}"></TextBox>

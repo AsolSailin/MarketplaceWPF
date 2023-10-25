@@ -34,27 +34,32 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         public CatalogPage()
         {
             InitializeComponent();
+            GetSortingAndFiltering();
+            GetList();
+        }
 
-            Products = App.Connection.Product.ToList();
-            SortedProducts = Products;
-
+        private void GetSortingAndFiltering()
+        {
             cbSort.ItemsSource = SortingClass.Methods;
+
             var categoryList = App.Connection.Category.ToList();
             categoryList.Add(_allCategory);
             cbFilter.ItemsSource = categoryList;
+
             cbSort.SelectedIndex = -1;
             cbFilter.SelectedIndex = -1;
-
-            GetList();
         }
 
         private void GetList()
         {
-            lvProductList.ItemsSource = Products;
+            Products = App.Connection.Product.ToList();
+            SortedProducts = Products;
+            lvProductList.ItemsSource = SortedProducts;
         }
 
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            App.IsAdd = false;
             NavClass.NextPage(new NavComponentsClass(new ProductPage(lvProductList.SelectedItem as Product)));
         }
 
@@ -112,8 +117,10 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                 if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "",
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
                     App.Connection.Product.Remove(product);
                     App.Connection.SaveChanges();
+                }
 
                 GetList();
             }
@@ -133,7 +140,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             lvProductList.ItemsSource = _sorted
                 .Where(x => string.Join(" ", x.Title)
                 .ToLower()
-                .Contains(tbSearch.Text.ToLower()))
+                .Contains(tboxSearch.Text.ToLower()))
                 .ToList();
         }
 
@@ -172,7 +179,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             _sorted = SortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
             lvProductList.ItemsSource = SortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
 
-            if (tbSearch.Text != "")
+            if (tboxSearch.Text != "")
                 Search();
         }
     }

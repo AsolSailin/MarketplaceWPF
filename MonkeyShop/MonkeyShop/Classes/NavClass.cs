@@ -18,18 +18,12 @@ namespace MonkeyShop.Classes
             main.MainFrame.Navigate(nav.Page);
         }
 
-        /// <summary>
-        /// Переход на следующую страницу
-        /// </summary>
         public static void NextPage(NavComponentsClass nav)
         {
             navs.Add(nav);
             Update(nav);
         }
 
-        /// <summary>
-        /// Переход на предыдущую страницу
-        /// </summary>
         public static void BackPage()
         {
             if (navs.Count > 1)

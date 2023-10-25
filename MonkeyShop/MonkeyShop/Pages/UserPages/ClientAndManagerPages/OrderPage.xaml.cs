@@ -30,10 +30,11 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
         public OrderPage(Order order)
         {
             InitializeComponent();
-            DataContext = order;
-            CurrentOrder = order;
             GetList();
             GetStatus();
+
+            DataContext = order;
+            CurrentOrder = order;
         }
 
         private void GetList()
@@ -51,6 +52,7 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
         {
             CurrentStatus = cbStatus.SelectedItem as OrderStatus;
             CurrentOrder.OrderStatus = CurrentStatus;
+
             App.Connection.Order.AddOrUpdate(CurrentOrder);
             App.Connection.SaveChanges();
         }

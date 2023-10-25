@@ -68,6 +68,7 @@
           <Property Name="Description" Type="varchar" MaxLength="1000" />
           <Property Name="Image" Type="image" />
           <Property Name="Category_Id" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="ProductOrder">
           <Key>
@@ -345,6 +346,7 @@
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Category_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Basket" Relationship="Self.FK_Basket_Product" FromRole="Product" ToRole="Basket" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ProductOrder" Relationship="Self.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
@@ -628,6 +630,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

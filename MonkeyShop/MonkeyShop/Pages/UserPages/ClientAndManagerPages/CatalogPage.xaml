@@ -23,8 +23,9 @@
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Поиск" VerticalAlignment="Center"/>
-                <TextBox x:Name="tbSearch" Width="130" VerticalContentAlignment="Center" Height="30" TextChanged="SearchChanged"/>
+                <TextBox x:Name="tboxSearch" Width="130" VerticalContentAlignment="Center" Height="30" TextChanged="SearchChanged"/>
             </StackPanel>
+            
             <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
                 <TextBlock Text="Сортировка" VerticalAlignment="Center"/>
                 <ComboBox x:Name="cbSort" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center" SelectionChanged="SortingSelect">
@@ -35,6 +36,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Фильтрация" VerticalAlignment="Center"/>
                 <ComboBox x:Name="cbFilter" Margin="0, 0, 5, 0" Width="130" Height="30" VerticalContentAlignment="Center" SelectionChanged="FilteringSelect">
@@ -46,7 +48,6 @@
                 </ComboBox>
             </StackPanel>
         </StackPanel>
-
 
         <ScrollViewer Grid.Row="1" Grid.Column="1" >
             <StackPanel>
@@ -78,19 +79,8 @@
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="0 10 0 0">
-                                        <TextBlock HorizontalAlignment="Center">
-                                        <Run Text="Цена: "></Run>
-                                        <Run Text="{Binding Cost}"></Run>
-                                        <Run Text="р."></Run>
-                                        </TextBlock>
+                                        <TextBlock Text="{Binding Cost, StringFormat={}Цена: {0} руб.}" HorizontalAlignment="Center"></TextBlock>
                                         <Button Content="ДОБАВИТЬ В КОРЗИНУ" Height="30" Width="170" VerticalAlignment="Center" Click="AddProduct_Click" Visibility="{Binding ClientVisibilityMethod}">
-                                            <Button.Resources>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="CornerRadius" Value="15"/>
-                                                </Style>
-                                            </Button.Resources>
-                                        </Button>
-                                        <Button Content="УДАЛИТЬ ТОВАР" Height="30" Width="170" VerticalAlignment="Center" Click="DeleteProduct_Click" Visibility="{Binding ManagerVisibilityMethod}">
                                             <Button.Resources>
                                                 <Style TargetType="Border">
                                                     <Setter Property="CornerRadius" Value="15"/>
