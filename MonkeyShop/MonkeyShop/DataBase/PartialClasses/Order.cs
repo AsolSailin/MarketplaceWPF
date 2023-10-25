@@ -1,5 +1,4 @@
-﻿using MonkeyShop.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,7 @@ using System.Windows;
 
 namespace MonkeyShop.DataBase
 {
-    public partial class Product
+    public partial class Order
     {
         public Visibility ClientVisibilityMethod
         {

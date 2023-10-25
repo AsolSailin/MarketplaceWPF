@@ -8,26 +8,19 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="139*"/>
-            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="395*"/>
         </Grid.RowDefinitions>
-        
-        <Rectangle Grid.ColumnSpan="3"></Rectangle>
-        
-        <Button x:Name="btnBack" Grid.Column="2" Height="30" Width="100" Click="BackBtn_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        
-        <Button x:Name="btnAcc" Grid.Column="0" Height="45" Width="45" Click="btnAcc_Click">
+
+        <Rectangle Grid.ColumnSpan="4"></Rectangle>
+
+        <Button x:Name="btnAcc" Grid.Column="0" Height="45" Width="45" Click="AccBtn_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>
@@ -39,7 +32,23 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+
+        <Button x:Name="btnCatalog" Content="КАТАЛОГ" Grid.Column="1" Height="30" Width="100" Click="CatalogBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button x:Name="btnExit" Grid.Column="3" Height="30" Width="100" Click="BackBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="0,65,0,0"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,65,0,0"/>
     </Grid>
 </Window>

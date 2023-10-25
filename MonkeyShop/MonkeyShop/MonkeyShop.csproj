@@ -112,6 +112,7 @@
     <Compile Include="DataBase\OrderStatus.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\PartialClasses\Order.cs" />
     <Compile Include="DataBase\PartialClasses\Product.cs" />
     <Compile Include="DataBase\Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -145,23 +146,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserPages\ClientPages\CatalogPage.xaml">
+    <Page Include="Pages\UserPages\ClientAndManagerPages\CatalogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserPages\ClientPages\HistoryPage.xaml">
+    <Page Include="Pages\UserPages\ClientAndManagerPages\HistoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserPages\ClientPages\OrderPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\UserPages\ClientPages\ProductPage.xaml">
+    <Page Include="Pages\UserPages\ClientAndManagerPages\ProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\UserPages\CommonPages\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserPages\ClientAndManagerPages\OrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,20 +188,20 @@
     <Compile Include="Pages\UserPages\ClientPages\BasketPage.xaml.cs">
       <DependentUpon>BasketPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserPages\ClientPages\CatalogPage.xaml.cs">
+    <Compile Include="Pages\UserPages\ClientAndManagerPages\CatalogPage.xaml.cs">
       <DependentUpon>CatalogPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserPages\ClientPages\HistoryPage.xaml.cs">
+    <Compile Include="Pages\UserPages\ClientAndManagerPages\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserPages\ClientPages\OrderPage.xaml.cs">
-      <DependentUpon>OrderPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\UserPages\ClientPages\ProductPage.xaml.cs">
+    <Compile Include="Pages\UserPages\ClientAndManagerPages\ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserPages\CommonPages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserPages\ClientAndManagerPages\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserPages\EmployeePages\IssuancePage.xaml.cs">
       <DependentUpon>IssuancePage.xaml</DependentUpon>
@@ -260,5 +261,6 @@
     </Content>
     <Resource Include="Images\Account.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

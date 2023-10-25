@@ -42,43 +42,44 @@ namespace MonkeyShop
             if (page is AuthorizationPage)
             {
                 btnAcc.Visibility = Visibility.Hidden; 
-                btnBack.Visibility = Visibility.Hidden;
+                btnExit.Visibility = Visibility.Hidden;
+                btnCatalog.Visibility = Visibility.Hidden;
             }
             else if (page is CatalogPage)
             {
                 btnAcc.Visibility = Visibility.Visible; 
-                btnBack.Visibility = Visibility.Visible;
-                btnBack.Content = "ВЫЙТИ";
+                btnExit.Visibility = Visibility.Visible;
+                btnCatalog.Visibility = Visibility.Hidden;
+                btnExit.Content = "ВЫЙТИ";
             }
             else
             {
                 btnAcc.Visibility = Visibility.Visible;
-                btnBack.Visibility = Visibility.Visible;
-                btnBack.Content = "НАЗАД";
+                btnCatalog.Visibility = Visibility.Visible;
+                btnExit.Visibility = Visibility.Visible;
             }
+
+            if (App.CurrentUser != null)
+                if (App.CurrentUser.Role.Title == "Сотрудник пункта выдачи")
+                    btnCatalog.Visibility = Visibility.Hidden;
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            switch (btnBack.Content)
-            {
-                case "ВЫЙТИ":
-                    if (MessageBox.Show("Вы действительно хотите выйти?", "",
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
-                    }
-                    break;
-                case "НАЗАД":
-                    NavClass.BackPage();
-                    break;
-            }
+            if (MessageBox.Show("Вы действительно хотите выйти?", "",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+                NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
         }
 
-        private void btnAcc_Click(object sender, RoutedEventArgs e)
+        private void AccBtn_Click(object sender, RoutedEventArgs e)
         {
             NavClass.NextPage(new NavComponentsClass(new AccountPage(App.CurrentAccount)));
+        }
+
+        private void CatalogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
         }
     }
 }

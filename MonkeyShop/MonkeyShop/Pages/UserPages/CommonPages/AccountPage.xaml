@@ -10,17 +10,16 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="7*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
             <Button x:Name="btnNavOne" Height="30" Width="140" VerticalAlignment="Center" Content="КОРЗИНА" Margin="7">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -36,8 +35,8 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-        
-        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -61,11 +60,11 @@
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">ЛИЧНЫЕ ДАННЫЕ</TextBlock>
                         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Фамилия:</TextBlock>
-                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tboxSurname" Text="{Binding User.Surname}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="130" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tboxSurname" Text="{Binding User.Surname}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="118" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
                         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Имя:</TextBlock>
-                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tboxName" Text="{Binding User.Name}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="130" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tboxName" Text="{Binding User.Name}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="118" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
                         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Отчество:</TextBlock>
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="tboxPatronymic" Text="{Binding User.Patronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="130" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="tboxPatronymic" Text="{Binding User.Patronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="118" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
                     </Grid>
                 </StackPanel>
 
@@ -86,9 +85,9 @@
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">ДАННЫЕ ДЛЯ ВХОДА:</TextBlock>
                         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Логин:</TextBlock>
-                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tboxLogin" Text="{Binding Login}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="130" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tboxLogin" Text="{Binding Login}" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="120" Height="30" Padding="3 0 0 0" IsReadOnly="True"/>
                         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Пароль:</TextBlock>
-                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tboxPassword" Text="{Binding Password}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="130" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tboxPassword" Text="{Binding Password}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="118" Height="30" Padding="3 0 0 0" IsReadOnly="True" Margin="10"></TextBox>
                         <TextBlock Grid.Row="3" FontSize="17" Margin="15"></TextBlock>
                     </Grid>
                 </StackPanel>

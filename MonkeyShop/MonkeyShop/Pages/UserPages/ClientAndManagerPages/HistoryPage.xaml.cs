@@ -1,5 +1,6 @@
 ﻿using MonkeyShop.Classes;
 using MonkeyShop.DataBase;
+using MonkeyShop.Pages.UserPages.CommonPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,10 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void GetList()
         {
-            lvOrderList.ItemsSource = App.Connection.Order.Where(x => x.User_Id == App.CurrentUser.Id).ToList();
+            if (App.CurrentUser.Role.Title == "Клиент")
+                lvOrderList.ItemsSource = App.Connection.Order.Where(x => x.User_Id == App.CurrentUser.Id).ToList();
+            else
+                lvOrderList.ItemsSource = App.Connection.Order.ToList();
         }
 
         private void OrderList_SelectionChanged(object sender, SelectionChangedEventArgs e)

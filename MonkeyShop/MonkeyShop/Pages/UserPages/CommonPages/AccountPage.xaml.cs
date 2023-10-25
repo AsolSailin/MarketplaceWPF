@@ -47,9 +47,11 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
                     break;
                 case "Менеджер":
                     btnNavOne.Visibility = Visibility.Visible;
-                    btnNavTwo.Visibility = Visibility.Hidden;
+                    btnNavTwo.Visibility = Visibility.Visible;
                     btnNavOne.Content = "ДОБАВИТЬ ТОВАР";
+                    btnNavTwo.Content = "ЗАКАЗЫ";
                     btnNavOne.Click += NewProduct_Click;
+                    btnNavTwo.Click += Order_Click;
                     break;
                 case "Сотрудник пункта выдачи":
                     btnNavOne.Visibility = Visibility.Hidden;

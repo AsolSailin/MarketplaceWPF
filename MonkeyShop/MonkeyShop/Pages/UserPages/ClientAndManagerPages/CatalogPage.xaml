@@ -58,7 +58,7 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="172">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="265" Width="172">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="7*"/>

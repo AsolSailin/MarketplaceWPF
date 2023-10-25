@@ -24,19 +24,19 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     public partial class CatalogPage : Page
     {
         private int number = 0;
-        private Func<Product, bool> _filterQuery = x => true;
+        private readonly Func<Product, bool> _filterQuery = x => true;
         private Func<Product, object> _sortQuery = x => x.Id;
-        private List<Product> _products { get; set; }
-        private List<Product> _sortedProducts { get; set; }
-        private static readonly Category _allCategory = new Category() { Title = "Все" };
         private List<Product> _sorted;
+        private static readonly Category _allCategory = new Category() { Title = "Все" };
+        private List<Product> Products { get; set; }
+        private List<Product> SortedProducts { get; set; }
 
         public CatalogPage()
         {
             InitializeComponent();
 
-            _products = App.Connection.Product.ToList();
-            _sortedProducts = _products;
+            Products = App.Connection.Product.ToList();
+            SortedProducts = Products;
 
             cbSort.ItemsSource = SortingClass.Methods;
             var categoryList = App.Connection.Category.ToList();
@@ -50,7 +50,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void GetList()
         {
-            lvProductList.ItemsSource = _products;
+            lvProductList.ItemsSource = Products;
         }
 
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -160,17 +160,17 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             var categorySortComboBoxSelectedItem = cbFilter.SelectedItem as Category;
 
             if (categorySortComboBoxSelectedItem.Title.Equals("Все"))
-                _sortedProducts = _products;
+                SortedProducts = Products;
             else
-                _sortedProducts = _products.Where(z => z.Category.Equals(categorySortComboBoxSelectedItem)).ToList();
+                SortedProducts = Products.Where(z => z.Category.Equals(categorySortComboBoxSelectedItem)).ToList();
 
             FilterAndSort();
         }
 
         private void FilterAndSort()
         {
-            _sorted = _sortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
-            lvProductList.ItemsSource = _sortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
+            _sorted = SortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
+            lvProductList.ItemsSource = SortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
 
             if (tbSearch.Text != "")
                 Search();
