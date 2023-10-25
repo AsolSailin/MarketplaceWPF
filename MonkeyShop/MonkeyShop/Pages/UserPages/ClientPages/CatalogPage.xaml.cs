@@ -26,31 +26,31 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         private int number = 0;
         private Func<Product, bool> _filterQuery = x => true;
         private Func<Product, object> _sortQuery = x => x.Id;
-        private readonly List<Product> _products;
-        private readonly string _allProduct = "Все";
+        private List<Product> _products { get; set; }
+        private List<Product> _sortedProducts { get; set; }
+        private static readonly Category _allCategory = new Category() { Title = "Все" };
         private List<Product> _sorted;
-        private string btnStringClick;
 
         public CatalogPage()
         {
             InitializeComponent();
 
             _products = App.Connection.Product.ToList();
+            _sortedProducts = _products;
 
             cbSort.ItemsSource = SortingClass.Methods;
-            cbFilter.ItemsSource = App.Connection.Category.ToList();
-            cbSort.SelectedIndex = 0;
-            cbFilter.SelectedIndex = 0;
+            var categoryList = App.Connection.Category.ToList();
+            categoryList.Add(_allCategory);
+            cbFilter.ItemsSource = categoryList;
+            cbSort.SelectedIndex = -1;
+            cbFilter.SelectedIndex = -1;
 
             GetList();
         }
 
         private void GetList()
         {
-            lvProductList.ItemsSource = App.Connection.Product.ToList();
-            /*IEnumerable<Product> products = App.Connection.Product;
-            products = products.Skip(number).Take(2);
-            lvProductList.ItemsSource = products;*/
+            lvProductList.ItemsSource = _products;
         }
 
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,10 +112,8 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                 if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "",
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
                     App.Connection.Product.Remove(product);
                     App.Connection.SaveChanges();
-                }
 
                 GetList();
             }
@@ -159,13 +157,20 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void FilteringSelect(object sender, SelectionChangedEventArgs e)
         {
+            var categorySortComboBoxSelectedItem = cbFilter.SelectedItem as Category;
+
+            if (categorySortComboBoxSelectedItem.Title.Equals("Все"))
+                _sortedProducts = _products;
+            else
+                _sortedProducts = _products.Where(z => z.Category.Equals(categorySortComboBoxSelectedItem)).ToList();
+
             FilterAndSort();
         }
 
         private void FilterAndSort()
         {
-            _sorted = _products.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
-            lvProductList.ItemsSource = _products.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
+            _sorted = _sortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
+            lvProductList.ItemsSource = _sortedProducts.Where(x => _filterQuery(x)).OrderBy(x => _sortQuery(x)).ToList();
 
             if (tbSearch.Text != "")
                 Search();
