@@ -35,7 +35,8 @@ namespace MonkeyShop.Pages.UserPages.EmployeePages
         {
             try
             {
-                CurrentOrder = App.Connection.Order.Where(x => x.Id == int.Parse(tboxNumber.Text)).FirstOrDefault();
+                var orderNumber = int.Parse(tboxNumber.Text);
+                CurrentOrder = App.Connection.Order.Where(x => x.Id == orderNumber).FirstOrDefault();
 
                 if (CurrentOrder != null)
                 {
@@ -57,20 +58,33 @@ namespace MonkeyShop.Pages.UserPages.EmployeePages
                         imageQr.Source = bitmapimage;
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Неверный номер заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             catch 
             {
-                MessageBox.Show("Неверный номер заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Неверные данные!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void GetOrder_Click(object sender, RoutedEventArgs e)
         {
-            CurrentOrder.Status_Id = 5;
+            if (CurrentOrder != null)
+            {
+                CurrentOrder.Status_Id = 5;
 
-            App.Connection.Order.AddOrUpdate(CurrentOrder);
-            App.Connection.SaveChanges();
-            MessageBox.Show("Заказ выдан!");
+                App.Connection.Order.AddOrUpdate(CurrentOrder);
+                App.Connection.SaveChanges();
+                MessageBox.Show("Заказ выдан!");
+                tboxNumber.Text = "";
+                imageQr.Source = null;
+            }
+            else
+            {
+                MessageBox.Show("Невозможно оформить заказ, так как его не существует!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

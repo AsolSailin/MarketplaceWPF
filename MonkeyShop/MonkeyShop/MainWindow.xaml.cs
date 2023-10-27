@@ -38,7 +38,7 @@ namespace MonkeyShop
         {
             var page = e.Content as Page;
 
-            if (page is AuthorizationPage)
+            if (page is AuthorizationPage || page is RegistrationPage)
             {
                 btnAcc.Visibility = Visibility.Hidden; 
                 btnExit.Visibility = Visibility.Hidden;
@@ -56,6 +56,7 @@ namespace MonkeyShop
                 btnAcc.Visibility = Visibility.Visible;
                 btnCatalog.Visibility = Visibility.Visible;
                 btnExit.Visibility = Visibility.Visible;
+                btnExit.Content = "ВЫЙТИ";
             }
 
             if (App.CurrentUser != null)

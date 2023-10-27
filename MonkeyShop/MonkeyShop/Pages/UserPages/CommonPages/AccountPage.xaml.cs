@@ -57,8 +57,10 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
                     btnNavTwo.Click += Order_Click;
                     break;
                 case "Сотрудник пункта выдачи":
-                    btnNavOne.Visibility = Visibility.Hidden;
+                    btnNavOne.Visibility = Visibility.Visible;
                     btnNavTwo.Visibility = Visibility.Hidden;
+                    btnNavOne.Content = "ВЫДАТЬ ЗАКАЗА";
+                    btnNavOne.Click += GetOrder_Click;
                     break;
             }
         }
@@ -81,21 +83,6 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
                 if (tboxSurname.Text != "" && tboxName.Text != "" && tboxPatronymic.Text != "" &&
                     tboxLogin.Text != "" && tboxPassword.Text != "")
                 {
-                    App.CurrentUser = new User()
-                    {
-                        Surname = tboxSurname.Text,
-                        Name = tboxName.Text,
-                        Patronymic = tboxPatronymic.Text
-                    };
-                    App.CurrentAccount = new Account()
-                    {
-                        Login = tboxLogin.Text,
-                        Password = tboxPassword.Text
-                    };
-
-                    App.CurrentUser.Account.Add(App.CurrentAccount);
-                    App.Connection.User.Add(App.CurrentUser);
-                    App.Connection.Account.Add(App.CurrentAccount);
                     App.Connection.SaveChanges();
                     MessageBox.Show("Данные аккаунта успешно изменены!");
                 }
@@ -114,6 +101,8 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
             {
                 App.Connection.Account.Remove(App.CurrentAccount);
                 App.Connection.User.Remove(App.CurrentUser);
+                App.CurrentUser = null;
+                App.CurrentAccount = null;
                 App.Connection.SaveChanges();
                 MessageBox.Show("Аккаунт был успешно удален!");
                 NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
@@ -135,6 +124,11 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
             App.IsAdd = true;
             var product = new Product();
             NavClass.NextPage(new NavComponentsClass(new ProductPage(product)));
+        }
+
+        private void GetOrder_Click(object sender, RoutedEventArgs e)
+        {
+            NavClass.NextPage(new NavComponentsClass(new IssuancePage()));
         }
     }
 }

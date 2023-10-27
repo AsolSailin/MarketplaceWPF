@@ -52,7 +52,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void GetList()
         {
-            Products = App.Connection.Product.ToList();
+            Products = App.Connection.Product.Where(x => x.IsDeleted == false).ToList();
             SortedProducts = Products;
             lvProductList.ItemsSource = SortedProducts;
         }

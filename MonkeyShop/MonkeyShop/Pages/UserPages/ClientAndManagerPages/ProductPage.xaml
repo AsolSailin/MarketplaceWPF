@@ -20,9 +20,9 @@
 
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Border BorderThickness="1" BorderBrush="#FF5C176B">
-                <Image Width="250" Height="250" x:Name="imgImage"/>
+                <Image Width="230" Height="230" x:Name="imgImage" Source="{Binding Image}"/>
             </Border>
-            <Button x:Name="btnImage" Height="30" Content="+файл" Click="ImageBtn_Click" Margin="0 7 0 0" Visibility="{Binding ManagerVisibilityMethod}">
+            <Button x:Name="btnImage" Height="30" Content="+файл" Click="ImageBtn_Click" Margin="0 7 0 0" IsEnabled="False" Visibility="{Binding ManagerVisibilityMethod}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -34,11 +34,18 @@
         <StackPanel Grid.Row="0" Grid.Column="1" Width="300" VerticalAlignment="Center">
             <TextBlock Text="НАЗВАНИЕ"></TextBlock>
             <TextBox x:Name="tboxTitle"  Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Title}"></TextBox>
-            <TextBlock Text="КАТЕГОРИЯ"></TextBlock>
+            <TextBlock Text="КАТЕГОРИЯ" Margin="0 5 0 0"></TextBlock>
             <TextBox x:Name="tboxCategory" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Category.Title}" Visibility="{Binding ClientVisibilityMethod}"></TextBox>
-            <TextBlock Text="СТОИМОСТЬ"></TextBlock>
-            <TextBox x:Name="tboxCost" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Cost, StringFormat={}{0}руб.}"></TextBox>
-            <TextBlock Text="ОПИСАНИЕ"></TextBlock>
+            <ComboBox x:Name="cbCategory" Height="30"  VerticalContentAlignment="Center" SelectionChanged="Category_SelectionChanged" Visibility="{Binding ManagerVisibilityMethod}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="СТОИМОСТЬ" Margin="0 5 0 0"></TextBlock>
+            <TextBox x:Name="tboxCost" Height="30" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Cost}"></TextBox>
+            <TextBlock Text="ОПИСАНИЕ" Margin="0 5 0 0"></TextBlock>
             <TextBox x:Name="tboxDescription" Height="100" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Description}"></TextBox>
         </StackPanel>
 

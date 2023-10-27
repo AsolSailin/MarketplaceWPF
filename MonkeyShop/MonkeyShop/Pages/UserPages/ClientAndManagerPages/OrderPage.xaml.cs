@@ -30,11 +30,10 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
         public OrderPage(Order order)
         {
             InitializeComponent();
-            GetList();
-            GetStatus();
-
             DataContext = order;
             CurrentOrder = order;
+            GetList();
+            GetStatus();
         }
 
         private void GetList()

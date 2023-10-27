@@ -29,35 +29,66 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     public partial class ProductPage : Page
     {
         private Product CurrentProduct { get; set; }
+        private Category CurrentCategory { get; set; }
         private byte[] Image { get; set; }
         private bool editBtnClick = true;
 
         public ProductPage(Product product)
         {
             InitializeComponent();
-            GetManagerBtn();
-
             DataContext = product;
             CurrentProduct = product;
+            GetManagerBtn();
         }
 
         private void GetManagerBtn()
         {
-            if (App.CurrentUser.Role.Title == "Manager")
+            cbCategory.ItemsSource = App.Connection.Category.ToList();
+
+            if (App.CurrentUser.Role.Title == "Менеджер")
             {
                 if (App.IsAdd)
                 {
                     btnAdd.Visibility = Visibility.Visible;
                     btnEdit.Visibility = Visibility.Collapsed;
                     btnDelete.Visibility = Visibility.Collapsed;
+                    tboxTitle.IsReadOnly = false;
+                    tboxCost.IsReadOnly = false;
+                    tboxDescription.IsReadOnly = false;
+                    btnImage.IsEnabled = true;
+                    cbCategory.IsEnabled = true;
+                    cbCategory.SelectedIndex = -1;
                 }
                 else
                 {
                     btnAdd.Visibility = Visibility.Collapsed;
                     btnEdit.Visibility = Visibility.Visible;
                     btnDelete.Visibility = Visibility.Visible;
+                    tboxTitle.IsReadOnly = true;
+                    tboxCost.IsReadOnly = true;
+                    tboxDescription.IsReadOnly = true;
+                    btnImage.IsEnabled = false;
+                    cbCategory.IsEnabled = false;
+                    cbCategory.SelectedIndex = App.Connection.Category.Where(x => x.Id == CurrentProduct.Category_Id).FirstOrDefault().Id - 1;
                 }
             }
+
+            switch (App.CurrentUser.Role.Title)
+            {
+                case "Клиент":
+                    tboxCategory.Visibility = Visibility.Visible;
+                    cbCategory.Visibility = Visibility.Collapsed;
+                    break;
+                case "Менеджер":
+                    tboxCategory.Visibility = Visibility.Collapsed;
+                    cbCategory.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        private void Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CurrentCategory = cbCategory.SelectedItem as Category;
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -72,6 +103,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                         Cost = int.Parse(tboxCost.Text),
                         Description = tboxDescription.Text,
                         Image = Image,
+                        Category = CurrentCategory,
                         IsDeleted = false
                     };
 
@@ -117,7 +149,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                 tboxTitle.IsReadOnly = false;
                 tboxCost.IsReadOnly = false;
                 tboxDescription.IsReadOnly = false;
-                tboxCategory.IsEnabled = true;
+                btnImage.IsEnabled = true;
                 editBtnClick = false;
 
                 MessageBox.Show("Вы перешли в режим редактирования! Для сохранения изменений необходимо нажать кнопку снова!");
@@ -127,21 +159,13 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
                 if (tboxTitle.Text != "" && tboxCategory.Text != "" && 
                     tboxCost.Text != "" && tboxDescription.Text != "")
                 {
-                    CurrentProduct = new Product()
-                    {
-                        Title = tboxTitle.Text,
-                        Cost = int.Parse(tboxCost.Text),
-                        Description = tboxDescription.Text,
-                    };
-
-                    App.Connection.Product.AddOrUpdate(CurrentProduct);
                     App.Connection.SaveChanges();
                     MessageBox.Show("Товар успешно изменен!");
 
                     tboxTitle.IsReadOnly = true;
                     tboxCost.IsReadOnly = true;
                     tboxDescription.IsReadOnly = true;
-                    tboxCategory.IsEnabled = false;
+                    btnImage.IsEnabled = false; 
                     editBtnClick = true;
                 }
                 else
@@ -159,7 +183,6 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             {
                 CurrentProduct.IsDeleted = true;
 
-                App.Connection.Product.AddOrUpdate(CurrentProduct);
                 App.Connection.SaveChanges();
                 MessageBox.Show("Товар был успешно удален!");
                 NavClass.NextPage(new NavComponentsClass(new CatalogPage()));

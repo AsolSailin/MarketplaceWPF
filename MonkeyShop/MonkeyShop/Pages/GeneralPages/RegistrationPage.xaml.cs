@@ -36,7 +36,8 @@ namespace MonkeyShop.Pages.GeneralPages
                 {
                     Surname = tboxSurname.Text,
                     Name = tboxName.Text,
-                    Patronymic = tboxPatronymic.Text
+                    Patronymic = tboxPatronymic.Text,
+                    Role = App.Connection.Role.Where(x => x.Id == 1).FirstOrDefault()
                 };
                 Account newAccount = new Account()
                 {

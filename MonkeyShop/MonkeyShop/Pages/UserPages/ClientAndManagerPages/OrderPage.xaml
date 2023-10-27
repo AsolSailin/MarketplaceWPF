@@ -67,7 +67,7 @@
             
             <StackPanel Orientation="Horizontal" Margin="7">
                 <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Сумма заказа:  "></TextBlock>
-                <TextBox x:Name="tboxPrice" Text="{Binding PurchaseAmount, StringFormat={}{0}руб.}" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="tboxPrice" Text="{Binding PurchaseAmount, StringFormat={}{0} руб.}" Height="30" Width="127" VerticalContentAlignment="Center" Padding="3 0 0 0" TextWrapping="Wrap" IsReadOnly="True"></TextBox>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Margin="7">
@@ -83,7 +83,7 @@
             </StackPanel>
         </StackPanel>
 
-        <Button Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Content="ВЕРНУТЬСЯ К СПИСКУ ЗАКАЗОВ" Height="30" Width="300" Click="GetOrderList_Click">
+        <Button Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Content="К СПИСКУ ЗАКАЗОВ" Height="30" Width="300" Click="GetOrderList_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>

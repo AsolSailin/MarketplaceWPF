@@ -62,7 +62,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             }
             else
             {
-                basket.Count++;
+                basket.Count--;
                 App.Connection.Basket.AddOrUpdate(basket);
             }
 
