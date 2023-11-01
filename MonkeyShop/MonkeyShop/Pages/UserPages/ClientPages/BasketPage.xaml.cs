@@ -110,41 +110,48 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         {
             try
             {
-                if (CurrentIssuePoint != null)
+                if (Price != 0)
                 {
-                    var userBasket = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id);
-
-                    var newOrder = new Order()
+                    if (CurrentIssuePoint != null)
                     {
-                        PlacingDate = DateTime.Now,
-                        PurchaseAmount = Price,
-                        IssuePoint = CurrentIssuePoint,
-                        User = App.CurrentUser,
-                        Status_Id = 1
-                    };
+                        var userBasket = App.Connection.Basket.Where(x => x.User_Id == App.CurrentUser.Id);
 
-                    App.Connection.Order.Add(newOrder);
-
-                    foreach (var basketProduct in userBasket)
-                    {
-                        var newProductOrder = new ProductOrder()
+                        var newOrder = new Order()
                         {
-                            Count = basketProduct.Count,
-                            Product = basketProduct.Product,
-                            Order = newOrder
+                            PlacingDate = DateTime.Now,
+                            PurchaseAmount = Price,
+                            IssuePoint = CurrentIssuePoint,
+                            User = App.CurrentUser,
+                            Status_Id = 1
                         };
 
-                        App.Connection.ProductOrder.Add(newProductOrder);
-                        App.Connection.Basket.Remove(basketProduct);
-                    }
+                        App.Connection.Order.Add(newOrder);
 
-                    App.Connection.SaveChanges();
-                    MessageBox.Show("Заказ успешно оформлен");
-                    NavClass.NextPage(new NavComponentsClass(new OrderPage(newOrder)));
+                        foreach (var basketProduct in userBasket)
+                        {
+                            var newProductOrder = new ProductOrder()
+                            {
+                                Count = basketProduct.Count,
+                                Product = basketProduct.Product,
+                                Order = newOrder
+                            };
+
+                            App.Connection.ProductOrder.Add(newProductOrder);
+                            App.Connection.Basket.Remove(basketProduct);
+                        }
+
+                        App.Connection.SaveChanges();
+                        MessageBox.Show("Заказ успешно оформлен");
+                        NavClass.NextPage(new NavComponentsClass(new OrderPage(newOrder)));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Для оформления заказа необходимо выбрать пункт выдачи!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Для оформления заказа необходимо выбрать пункт выдачи!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Для оформления заказа необходимо добавить товары в корзину!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch

@@ -65,25 +65,39 @@ namespace MonkeyShop.Pages.UserPages.EmployeePages
             }
             catch 
             {
-                MessageBox.Show("Неверные данные!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void GetOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentOrder != null)
+            try
             {
-                CurrentOrder.Status_Id = 5;
+                if (CurrentOrder.Status_Id != 5)
+                {
+                    if (CurrentOrder != null)
+                    {
+                        CurrentOrder.Status_Id = 5;
 
-                App.Connection.Order.AddOrUpdate(CurrentOrder);
-                App.Connection.SaveChanges();
-                MessageBox.Show("Заказ выдан!");
-                tboxNumber.Text = "";
-                imageQr.Source = null;
+                        App.Connection.Order.AddOrUpdate(CurrentOrder);
+                        App.Connection.SaveChanges();
+                        MessageBox.Show("Заказ выдан!");
+                        tboxNumber.Text = "";
+                        imageQr.Source = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Невозможно оформить заказ, так как его не существует!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Заказ уже выдан!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Невозможно оформить заказ, так как его не существует!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

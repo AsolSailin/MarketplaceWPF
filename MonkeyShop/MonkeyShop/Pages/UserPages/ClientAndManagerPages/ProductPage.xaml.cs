@@ -119,7 +119,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             }
             catch
             {
-                MessageBox.Show("Неверные данные!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -138,54 +138,68 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
             }
             catch
             {
-                MessageBox.Show("Неверный формат файла!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (editBtnClick)
+            try
             {
-                tboxTitle.IsReadOnly = false;
-                tboxCost.IsReadOnly = false;
-                tboxDescription.IsReadOnly = false;
-                btnImage.IsEnabled = true;
-                editBtnClick = false;
-
-                MessageBox.Show("Вы перешли в режим редактирования! Для сохранения изменений необходимо нажать кнопку снова!");
-            }
-            else
-            {
-                if (tboxTitle.Text != "" && tboxCategory.Text != "" && 
-                    tboxCost.Text != "" && tboxDescription.Text != "")
+                if (editBtnClick)
                 {
-                    App.Connection.SaveChanges();
-                    MessageBox.Show("Товар успешно изменен!");
+                    tboxTitle.IsReadOnly = false;
+                    tboxCost.IsReadOnly = false;
+                    tboxDescription.IsReadOnly = false;
+                    btnImage.IsEnabled = true;
+                    editBtnClick = false;
 
-                    tboxTitle.IsReadOnly = true;
-                    tboxCost.IsReadOnly = true;
-                    tboxDescription.IsReadOnly = true;
-                    btnImage.IsEnabled = false; 
-                    editBtnClick = true;
+                    MessageBox.Show("Вы перешли в режим редактирования! Для сохранения изменений необходимо нажать кнопку снова!");
                 }
                 else
                 {
-                    MessageBox.Show("Неверные данные!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (tboxTitle.Text != "" && tboxCategory.Text != "" &&
+                        tboxCost.Text != "" && tboxDescription.Text != "")
+                    {
+                        App.Connection.SaveChanges();
+                        MessageBox.Show("Товар успешно изменен!");
+
+                        tboxTitle.IsReadOnly = true;
+                        tboxCost.IsReadOnly = true;
+                        tboxDescription.IsReadOnly = true;
+                        btnImage.IsEnabled = false;
+                        editBtnClick = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Все поля должны быть заполнены!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "",
+            try
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "",
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                CurrentProduct.IsDeleted = true;
+                {
+                    CurrentProduct.IsDeleted = true;
 
-                App.Connection.SaveChanges();
-                MessageBox.Show("Товар был успешно удален!");
-                NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
+                    App.Connection.SaveChanges();
+                    MessageBox.Show("Товар был успешно удален!");
+                    NavClass.NextPage(new NavComponentsClass(new CatalogPage()));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

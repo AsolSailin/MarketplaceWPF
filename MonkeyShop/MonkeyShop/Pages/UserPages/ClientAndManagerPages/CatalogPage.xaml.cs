@@ -23,7 +23,6 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
     /// </summary>
     public partial class CatalogPage : Page
     {
-        private int number = 0;
         private readonly Func<Product, bool> _filterQuery = x => true;
         private Func<Product, object> _sortQuery = x => x.Id;
         private List<Product> _sorted;
@@ -52,7 +51,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
         private void GetList()
         {
-            Products = App.Connection.Product.Where(x => x.IsDeleted == false).ToList();
+            Products = App.Connection.Product.Where(x => x.IsDeleted == false).OrderByDescending(x => x.Id).ToList();
             SortedProducts = Products;
             lvProductList.ItemsSource = SortedProducts;
         }
@@ -61,26 +60,6 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         {
             App.IsAdd = false;
             NavClass.NextPage(new NavComponentsClass(new ProductPage(lvProductList.SelectedItem as Product)));
-        }
-
-        private void BackProduct_Click(object sender, RoutedEventArgs e)
-        {
-            number--;
-
-            if (number < 0)
-                number = 0;
-
-            GetList();
-        }
-
-        private void NextProduct_Click(object sender, RoutedEventArgs e)
-        {
-            number++;
-
-            if (lvProductList.Items.Count < 2)
-                number--;
-
-            GetList();
         }
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -99,7 +78,7 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
 
                 App.Connection.Basket.Add(newBasket);
                 App.Connection.SaveChanges();
-                MessageBox.Show("Товар добавлен в корзину");
+                MessageBox.Show("Товар добавлен в корзину. Для просмотра корзины и оформления заказов перейдите в свой аккаунт)");
             }
             catch
             {

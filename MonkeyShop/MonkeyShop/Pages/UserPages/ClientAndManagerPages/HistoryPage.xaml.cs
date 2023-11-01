@@ -32,9 +32,9 @@ namespace MonkeyShop.Pages.UserPages.ClientPages
         private void GetList()
         {
             if (App.CurrentUser.Role.Title == "Клиент")
-                lvOrderList.ItemsSource = App.Connection.Order.Where(x => x.User_Id == App.CurrentUser.Id).ToList();
+                lvOrderList.ItemsSource = App.Connection.Order.Where(x => x.User_Id == App.CurrentUser.Id).OrderByDescending(x => x.Id).ToList();
             else
-                lvOrderList.ItemsSource = App.Connection.Order.ToList();
+                lvOrderList.ItemsSource = App.Connection.Order.OrderByDescending(x => x.Id).ToList().ToList();
         }
 
         private void OrderList_SelectionChanged(object sender, SelectionChangedEventArgs e)

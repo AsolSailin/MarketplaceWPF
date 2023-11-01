@@ -92,7 +92,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Text="Итого: "></TextBlock>
-            <TextBlock x:Name="tbPrice">р.</TextBlock>
+            <TextBlock x:Name="tbPrice"> руб.</TextBlock>
         </StackPanel>
 
         <Button Grid.Column="1" Grid.Row="2" Content="ОФОРМИТЬ ЗАКАЗ" Height="30" Width="300" Click="GetOrder_Click">

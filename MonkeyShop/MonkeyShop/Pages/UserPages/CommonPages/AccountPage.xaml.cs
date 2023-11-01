@@ -67,47 +67,61 @@ namespace MonkeyShop.Pages.UserPages.CommonPages
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (editBtnClick)
+            try
             {
-                tboxSurname.IsReadOnly = false;
-                tboxName.IsReadOnly = false;
-                tboxPatronymic.IsReadOnly = false;
-                tboxLogin.IsReadOnly = false;
-                tboxPassword.IsReadOnly = false;
-
-                MessageBox.Show("Вы перешли в режим редактирования! Для сохранения изменений необходимо нажать кнопку снова!");
-                editBtnClick = false;
-            }
-            else
-            {
-                if (tboxSurname.Text != "" && tboxName.Text != "" && tboxPatronymic.Text != "" &&
-                    tboxLogin.Text != "" && tboxPassword.Text != "")
+                if (editBtnClick)
                 {
-                    App.Connection.SaveChanges();
-                    MessageBox.Show("Данные аккаунта успешно изменены!");
+                    tboxSurname.IsReadOnly = false;
+                    tboxName.IsReadOnly = false;
+                    tboxPatronymic.IsReadOnly = false;
+                    tboxLogin.IsReadOnly = false;
+                    tboxPassword.IsReadOnly = false;
+
+                    MessageBox.Show("Вы перешли в режим редактирования! Для сохранения изменений необходимо нажать кнопку снова!");
+                    editBtnClick = false;
                 }
                 else
                 {
-                    MessageBox.Show("Неверные данные!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (tboxSurname.Text != "" && tboxName.Text != "" && tboxPatronymic.Text != "" &&
+                        tboxLogin.Text != "" && tboxPassword.Text != "")
+                    {
+                        App.Connection.SaveChanges();
+                        MessageBox.Show("Данные аккаунта успешно изменены!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Все поля должны быть заполнены!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Вы действительно хотите удалить аккаунт?", "",
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                App.Connection.Account.Remove(App.CurrentAccount);
-                App.Connection.User.Remove(App.CurrentUser);
-                App.CurrentUser = null;
-                App.CurrentAccount = null;
-                App.Connection.SaveChanges();
-                MessageBox.Show("Аккаунт был успешно удален!");
-                NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
-            }
-        }
+        //private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (MessageBox.Show("Вы действительно хотите удалить аккаунт?", "",
+        //                MessageBoxButton.YesNo,
+        //                MessageBoxImage.Question) == MessageBoxResult.Yes)
+        //        {
+        //            App.Connection.Account.Remove(App.CurrentAccount);
+        //            App.Connection.User.Remove(App.CurrentUser);
+        //            App.CurrentUser = null;
+        //            App.CurrentAccount = null;
+        //            App.Connection.SaveChanges();
+        //            MessageBox.Show("Аккаунт был успешно удален!");
+        //            NavClass.NextPage(new NavComponentsClass(new AuthorizationPage()));
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Ошибка данных!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //}
 
         private void Basket_Click(object sender, RoutedEventArgs e)
         {

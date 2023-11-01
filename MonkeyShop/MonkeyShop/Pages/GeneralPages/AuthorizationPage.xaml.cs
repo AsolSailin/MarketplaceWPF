@@ -61,7 +61,7 @@ namespace MonkeyShop.Pages.GeneralPages
             }
             else
             {
-                MessageBox.Show("Введите логин и пароль, пожалуйста!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Для входа в систему все поля должны быть заполнены!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

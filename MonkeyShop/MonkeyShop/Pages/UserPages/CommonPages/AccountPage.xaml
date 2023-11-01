@@ -104,13 +104,13 @@
                 </Button.Resources>
             </Button>
 
-            <Button Grid.Column="1" Height="30" Width="140" VerticalAlignment="Center" Content="УДАЛИТЬ" Margin="7" Click="DeleteBtn_Click">
+            <!--<Button Grid.Column="1" Height="30" Width="140" VerticalAlignment="Center" Content="УДАЛИТЬ" Margin="7" Click="DeleteBtn_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"/>
                     </Style>
                 </Button.Resources>
-            </Button>
+            </Button>-->
         </StackPanel>
     </Grid>
 </Page>
